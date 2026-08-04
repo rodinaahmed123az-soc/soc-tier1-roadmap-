@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رودينا أحمد | SOC Tier 1 Roadmap</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Cairo & Fira Code) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #0a0e17;
+            --bg-card: #121826;
+            --bg-card-hover: #1a2235;
+            --accent-green: #00ff88;
+            --accent-blue: #00b8ff;
+            --accent-purple: #7000ff;
+            --text-main: #f0f6fc;
+            --text-muted: #8b949e;
+            --border-color: #21262d;
+            --glow-green: rgba(0, 255, 136, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header / Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 14, 23, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent-green);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-green);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 20px 60px;
+            background: radial-gradient(circle at center, rgba(0,255,136,0.05) 0%, transparent 70%);
+        }
+
+        .avatar-container {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 3px solid var(--accent-green);
+            box-shadow: 0 0 25px var(--glow-green);
+            margin-bottom: 25px;
+            overflow: hidden;
+            position: relative;
+            background-color: var(--bg-card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .avatar-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .hero h2 {
+            font-size: 1.3rem;
+            color: var(--accent-green);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .hero p {
+            max-width: 600px;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+
+        .cta-btns {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--accent-green);
+            color: var(--bg-dark);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 15px var(--glow-green);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            background: var(--bg-card);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+            transform: translateY(-2px);
+        }
+
+        /* Sections General */
+        section {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: var(--text-main);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-green);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Contact Section */
+        .contact-cards {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .contact-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 25px 35px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .contact-card i {
+            font-size: 1.8rem;
+            color: var(--accent-green);
+        }
+
+        .contact-card:hover {
+            border-color: var(--accent-green);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px var(--glow-green);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <a href="#" class="logo">
+            <i class="fa-solid fa-user-shield"></i>
+            رودينا أحمد
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#about">نبذة عني</a></li>
+                <li><a href="#contact">تواصل معي</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="avatar-container">
+            <!-- الصورة مع نظام محاولة ذكي لكل الامتدادات -->
+            <img src="Photo.jpeg" id="profileImg" alt="رودينا أحمد" 
+                 onerror="handleImageError(this)">
+        </div>
+        <h1>رودينا أحمد</h1>
+        <h2>محللة أمن سيبراني | SOC Tier 1 | طالبة أمن سيبراني</h2>
+        <p>Cyber Security | Blue Team | SOC Tier 1 | Incident Response | SIEM & Threat Hunting</p>
+        
+        <div class="cta-btns">
+            <a href="#contact" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> إبدأ الرحلة</a>
+            <a href="https://www.linkedin.com/in/rodina-ahmed-4049a6375" target="_blank" class="btn btn-secondary"><i class="fa-brands fa-linkedin"></i> تواصل معي</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">تواصل معي</h2>
+        <div class="contact-cards">
+            <a href="https://www.linkedin.com/in/rodina-ahmed-4049a6375" target="_blank" class="contact-card">
+                <i class="fa-brands fa-linkedin"></i>
+                <span>حساب LinkedIn</span>
+            </a>
+            <a href="mailto:rodinaahmed123az@gmail.com" class="contact-card">
+                <i class="fa-solid fa-envelope"></i>
+                <span>rodinaahmed123az@gmail.com</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>جميع الحقوق محفوظة © 2026 - رودينا أحمد</p>
+    </footer>
+
+    <!-- Script للتعامل مع امتدادات الصور المختلفة وإظهار الأحرف في حال عدم وجود صورة -->
+    <script>
+        const extensions = ['Photo.jpg', 'Photo.png', 'Photo.JPG', 'Photo.JPEG', 'photo.jpeg', 'photo.jpg'];
+        let extIndex = 0;
+
+        function handleImageError(img) {
+            if (extIndex < extensions.length) {
+                img.src = extensions[extIndex];
+                extIndex++;
+            } else {
+                img.parentElement.innerHTML = '<div style="width:100%;height:100%;border-radius:50%;background:#121826;display:flex;align-items:center;justify-content:center;font-size:3rem;font-weight:800;color:#00ff88;">RA</div>';
+            }
+        }
+    </script>
+</body>
+</html>
