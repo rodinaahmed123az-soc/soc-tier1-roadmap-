@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Rodina Ahmed | SOC Tier 1 Roadmap</title>
+<title>رودبنا احمد | SOC Tier 1 Roadmap</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 :root {
@@ -18,19 +18,21 @@
   --border-color: #1a233a;
   --green-accent: #00ff88;
   --cyan-accent: #00E5FF;
+  --blue-primary: #0284c7;
   --nav-bg: rgba(8, 12, 20, 0.9);
   --matrix-opacity: 0.45;
   --font-family: 'Cairo', sans-serif;
 }
 
 body.light {
-  --bg-deep: #F1F5F9;
+  --bg-deep: #F8FAFC;
   --card-bg: #FFFFFF;
   --text-main: #0F172A;
-  --text-muted: #475569;
-  --border-color: #CBD5E1;
+  --text-muted: #64748B;
+  --border-color: #E2E8F0;
   --green-accent: #10B981;
   --cyan-accent: #0284C7;
+  --blue-primary: #0284c7;
   --nav-bg: rgba(255, 255, 255, 0.95);
   --matrix-opacity: 0;
 }
@@ -63,6 +65,7 @@ body {
   transition: opacity 0.3s ease;
 }
 
+/* Navbar */
 nav {
   position: fixed;
   top: 0;
@@ -77,7 +80,7 @@ nav {
 .nav-container {
   max-width: 1200px;
   margin: auto;
-  padding: 12px 20px;
+  padding: 14px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -86,87 +89,120 @@ nav {
 .logo {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   text-decoration: none;
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: var(--green-accent);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--blue-primary);
 }
 
 .nav-links {
   display: flex;
-  gap: 20px;
+  gap: 25px;
   align-items: center;
 }
 
 .nav-links a {
   color: var(--text-main);
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.95rem;
   transition: 0.3s;
 }
 
 .nav-links a:hover {
-  color: var(--green-accent);
+  color: var(--blue-primary);
 }
 
 .controls-group {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   align-items: center;
 }
 
 .lang-btn {
-  background: rgba(125, 125, 125, 0.1);
+  background: var(--card-bg);
   color: var(--text-main);
   border: 1px solid var(--border-color);
-  padding: 6px 14px;
+  padding: 6px 16px;
   border-radius: 20px;
   cursor: pointer;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.85rem;
   transition: 0.3s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .theme-toggle-bubble {
-  background: rgba(125, 125, 125, 0.1);
+  background: var(--card-bg);
   color: var(--text-main);
   border: 1px solid var(--border-color);
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
+  padding: 6px 16px;
+  border-radius: 20px;
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 1rem;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
+/* Hero Section */
 .hero-section {
-  padding-top: 120px;
+  padding-top: 140px;
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
 .profile-avatar-container {
-  margin-bottom: 20px;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 25px;
+}
+
+.profile-avatar-container::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border: 1px dashed var(--blue-primary);
+  border-radius: 50%;
+  opacity: 0.5;
 }
 
 .profile-avatar {
-  width: 130px;
-  height: 130px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
-  border: 3px solid var(--green-accent);
-  box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+  border: 4px solid var(--card-bg);
+  box-shadow: 0 10px 25px rgba(2, 132, 199, 0.25);
   object-fit: cover;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-name {
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--text-main);
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.hero-title-sub {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--blue-primary);
+  margin-bottom: 12px;
 }
 
 .hero-subtitle-tags {
   color: var(--text-muted);
   font-size: 0.95rem;
-  margin-bottom: 25px;
-  letter-spacing: 0.5px;
+  margin-bottom: 30px;
   font-weight: 600;
 }
 
@@ -175,39 +211,35 @@ nav {
   gap: 15px;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
 }
 
 .btn-primary {
-  background: var(--green-accent);
+  background: var(--blue-primary);
   color: #fff;
   font-weight: 800;
-  padding: 10px 24px;
-  border-radius: 10px;
+  padding: 12px 30px;
+  border-radius: 25px;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 8px;
   transition: 0.3s;
   border: none;
-}
-
-body:not(.light) .btn-primary {
-  color: #000;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  opacity: 0.9;
+  box-shadow: 0 6px 20px rgba(2, 132, 199, 0.4);
 }
 
 .btn-outline {
   background: transparent;
-  color: var(--green-accent);
-  border: 1px solid var(--green-accent);
-  font-weight: 700;
-  padding: 10px 24px;
-  border-radius: 10px;
+  color: var(--blue-primary);
+  border: 2px solid var(--blue-primary);
+  font-weight: 800;
+  padding: 10px 28px;
+  border-radius: 25px;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
@@ -216,23 +248,25 @@ body:not(.light) .btn-primary {
 }
 
 .btn-outline:hover {
-  background: rgba(0, 255, 136, 0.1);
+  background: rgba(2, 132, 199, 0.08);
   transform: translateY(-2px);
 }
 
+/* Common Section Layouts */
 .section-title {
   text-align: center;
   font-size: 2.2rem;
-  font-weight: 800;
+  font-weight: 900;
   margin-bottom: 25px;
   color: var(--text-main);
+  position: relative;
 }
 
 .title-line {
-  width: 60px;
+  width: 70px;
   height: 4px;
-  background: var(--cyan-accent);
-  margin: 8px auto 0;
+  background: var(--blue-primary);
+  margin: 10px auto 0;
   border-radius: 2px;
 }
 
@@ -252,7 +286,7 @@ body:not(.light) .btn-primary {
 }
 
 .progress-title { color: var(--text-main); }
-.progress-count { color: var(--cyan-accent); }
+.progress-count { color: var(--blue-primary); }
 
 .progress-bar-bg {
   width: 100%;
@@ -267,7 +301,7 @@ body:not(.light) .btn-primary {
 .progress-bar-fill {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, var(--green-accent), var(--cyan-accent));
+  background: linear-gradient(90deg, var(--blue-primary), var(--cyan-accent));
   border-radius: 10px;
   transition: width 0.4s ease;
 }
@@ -317,7 +351,7 @@ html[dir="ltr"] .reset-btn { float: right; }
 }
 
 .search-box:focus {
-  border-color: var(--cyan-accent);
+  border-color: var(--blue-primary);
 }
 
 .about-section {
@@ -344,7 +378,7 @@ html[dir="rtl"] .about-card { text-align: right; }
 html[dir="ltr"] .about-card { text-align: left; }
 
 .card-title {
-  color: var(--green-accent);
+  color: var(--blue-primary);
   font-size: 1.3rem;
   font-weight: 800;
   margin-bottom: 15px;
@@ -367,9 +401,9 @@ html[dir="rtl"] .skills-container { justify-content: flex-end; }
 html[dir="ltr"] .skills-container { justify-content: flex-start; }
 
 .skill-tag {
-  background: rgba(16, 185, 129, 0.1);
-  border: 1px solid var(--green-accent);
-  color: var(--green-accent);
+  background: rgba(2, 132, 199, 0.08);
+  border: 1px solid var(--blue-primary);
+  color: var(--blue-primary);
   padding: 4px 12px;
   border-radius: 8px;
   font-size: 0.8rem;
@@ -443,9 +477,9 @@ html[dir="rtl"] .resource-buttons { justify-content: flex-end; }
 html[dir="ltr"] .resource-buttons { justify-content: flex-start; }
 
 .res-btn {
-  background: rgba(2, 132, 199, 0.1);
-  color: var(--cyan-accent);
-  border: 1px solid var(--cyan-accent);
+  background: rgba(2, 132, 199, 0.08);
+  color: var(--blue-primary);
+  border: 1px solid var(--blue-primary);
   padding: 8px 18px;
   border-radius: 20px;
   text-decoration: none;
@@ -458,7 +492,7 @@ html[dir="ltr"] .resource-buttons { justify-content: flex-start; }
 }
 
 .res-btn:hover {
-  background: var(--cyan-accent);
+  background: var(--blue-primary);
   color: #fff;
 }
 
@@ -491,8 +525,8 @@ html[dir="ltr"] .complete-action { justify-content: flex-start; }
 
 .status-btn {
   background: transparent;
-  color: var(--green-accent);
-  border: 1px solid var(--green-accent);
+  color: var(--blue-primary);
+  border: 1px solid var(--blue-primary);
   padding: 7px 18px;
   border-radius: 20px;
   cursor: pointer;
@@ -505,7 +539,7 @@ html[dir="ltr"] .complete-action { justify-content: flex-start; }
 }
 
 .status-btn.done {
-  background: var(--green-accent);
+  background: var(--blue-primary);
   color: #fff;
 }
 
@@ -539,7 +573,7 @@ html[dir="ltr"] .complete-action { justify-content: flex-start; }
 }
 
 .btn-cyan {
-  background: var(--cyan-accent);
+  background: var(--blue-primary);
   color: #fff;
   font-weight: 800;
   padding: 10px 28px;
@@ -581,7 +615,7 @@ html[dir="ltr"] .complete-action { justify-content: flex-start; }
 }
 
 .contact-item a {
-  color: var(--cyan-accent);
+  color: var(--blue-primary);
   text-decoration: none;
   font-weight: 700;
 }
@@ -593,6 +627,7 @@ html[dir="ltr"] .complete-action { justify-content: flex-start; }
 @media (max-width: 768px) {
   .about-grid { grid-template-columns: 1fr; }
   .nav-links { display: none; }
+  .hero-name { font-size: 2.2rem; }
 }
 </style>
 </head>
@@ -601,51 +636,56 @@ html[dir="ltr"] .complete-action { justify-content: flex-start; }
 
 <canvas id="matrixCanvas"></canvas>
 
+<!-- Navbar -->
 <nav>
 <div class="nav-container">
 
 <a href="#" class="logo">
-  <span>Rodina Ahmed</span>
   <i class="fas fa-shield-alt"></i>
+  <span>رودبنا احمد</span>
 </a>
 
 <div class="nav-links">
-  <a href="#contact" id="navContact">تواصل</a>
-  <a href="#pdf" id="navPdf">تحميل PDF</a>
-  <a href="#roadmap" id="navRoadmap">الـ Roadmap</a>
   <a href="#about" id="navAbout">نبذة عني</a>
+  <a href="#roadmap" id="navRoadmap">الـ Roadmap</a>
+  <a href="#pdf" id="navPdf">تحميل PDF</a>
+  <a href="#contact" id="navContact">تواصل</a>
 </div>
 
 <div class="controls-group">
-  <button class="lang-btn" onclick="toggleLang()" id="langBtn">EN 🌐</button>
+  <button class="lang-btn" onclick="toggleLang()" id="langBtn">🇸🇦 عربي ⇄ 🇬🇧 English</button>
   <button class="theme-toggle-bubble" onclick="toggleTheme()" id="themeBtn">
     <i class="fas fa-sun"></i>
+    <span id="themeText">Light</span>
   </button>
 </div>
 
 </div>
 </nav>
 
+<!-- Hero Section -->
 <div class="hero-section">
   <div class="profile-avatar-container">
-    <img src="profile.jpeg" alt="Rodina Ahmed" class="profile-avatar">
+    <img src="profile.jpeg" alt="رودبنا احمد" class="profile-avatar">
   </div>
 
-  <h1 class="section-title" id="heroTitle">
-    خارطة طريق SOC Tier 1 🧩
-    <div class="title-line"></div>
-  </h1>
+  <h1 class="hero-name" id="heroName">رودبنا احمد</h1>
+  
+  <div class="hero-title-sub" id="heroTitleSub">
+    محلل أمن سيبراني | SOC Tier 1 | طالب أمن سيبراني
+  </div>
 
   <div class="hero-subtitle-tags">
-    Cyber Security | Blue Team | SOC | SIEM | Incident Response
+    أمن سيبراني | Blue Team | SOC Tier 1 | Incident Response | SIEM | Threat Hunting
   </div>
   
   <div class="hero-buttons">
     <a href="#roadmap" class="btn-primary" id="startBtn">ابدأ الرحلة 🚀</a>
-    <a href="#contact" class="btn-outline" id="contactBtn">تواصل معي 📧</a>
+    <a href="#contact" class="btn-outline" id="contactBtn">تواصل معي ✉️</a>
   </div>
 </div>
 
+<!-- Progress Bar Section -->
 <div class="progress-container">
   <div class="progress-header">
     <span class="progress-count" id="progressCount">0 / 8 مراحل</span>
@@ -659,12 +699,17 @@ html[dir="ltr"] .complete-action { justify-content: flex-start; }
   </button>
 </div>
 
+<!-- Search Input -->
 <div class="search-container">
   <input type="text" id="searchInput" class="search-box" placeholder="🔍 ابحث في المراحل..." oninput="renderRoadmap()">
 </div>
 
+<!-- About Section -->
 <section class="about-section" id="about">
-  <h2 class="section-title" id="aboutHeader">نبذة عني 📌</h2>
+  <h2 class="section-title" id="aboutHeader">
+    نبذة عني
+    <div class="title-line"></div>
+  </h2>
 
   <div class="about-grid">
     <div class="about-card">
@@ -688,18 +733,23 @@ html[dir="ltr"] .complete-action { justify-content: flex-start; }
     <div class="about-card">
       <h3 class="card-title" id="aboutMeTitle">من أنا؟</h3>
       <p class="card-desc" id="aboutMeDesc">
-        أنا رودينا أحمد، مهتمة ومتخصصة في مجال الأمن السيبراني وتحديداً الـ SOC Tier 1 و Blue Teaming. قمت بإنشاء خارطة الطريق هذه لمساعدة الراغبين في دخول المجال بطريقة منظمة وعملية.
+        أنا رودبنا احمد، مهتمة ومتخصصة في مجال الأمن السيبراني وتحديداً الـ SOC Tier 1 و Blue Teaming. قمت بإنشاء خارطة الطريق هذه لمساعدة الراغبين في دخول المجال بطريقة منظمة وعملية.
       </p>
     </div>
   </div>
 </section>
 
+<!-- Roadmap Section -->
 <section class="roadmap-section" id="roadmap">
   <div id="roadmapContainer"></div>
 </section>
 
+<!-- PDF Section -->
 <section class="pdf-section" id="pdf">
-  <h2 class="section-title" id="pdfHeader">تحميل PDF 📑</h2>
+  <h2 class="section-title" id="pdfHeader">
+    تحميل PDF
+    <div class="title-line"></div>
+  </h2>
   <div class="pdf-card">
     <i class="fas fa-book-open pdf-icon"></i>
     <p class="pdf-text" id="pdfText">اضغط لفتح نسخة قابلة للطباعة من الـ Roadmap.</p>
@@ -709,8 +759,12 @@ html[dir="ltr"] .complete-action { justify-content: flex-start; }
   </div>
 </section>
 
+<!-- Contact Section -->
 <section class="contact-section" id="contact">
-  <h2 class="section-title" id="contactHeader">تواصل معي 📧</h2>
+  <h2 class="section-title" id="contactHeader">
+    تواصل معي
+    <div class="title-line"></div>
+  </h2>
   <div class="contact-card">
     <div class="contact-item">
       <span>Email:</span>
@@ -762,10 +816,11 @@ setInterval(drawMatrix, 33);
 function toggleTheme() {
   document.body.classList.toggle("light");
   const themeBtn = document.getElementById("themeBtn");
+  const themeText = document.getElementById("themeText");
   if(document.body.classList.contains("light")) {
-    themeBtn.innerHTML = '<i class="fas fa-moon"></i>';
+    themeBtn.innerHTML = '<i class="fas fa-moon"></i><span id="themeText">Dark</span>';
   } else {
-    themeBtn.innerHTML = '<i class="fas fa-sun"></i>';
+    themeBtn.innerHTML = '<i class="fas fa-sun"></i><span id="themeText">Light</span>';
   }
 }
 
@@ -778,21 +833,22 @@ const dictionary = {
     navPdf: "تحميل PDF",
     navRoadmap: "الـ Roadmap",
     navAbout: "نبذة عني",
-    heroTitle: 'خارطة طريق SOC Tier 1 🧩<div class="title-line"></div>',
+    heroName: "رودبنا احمد",
+    heroTitleSub: "محلل أمن سيبراني | SOC Tier 1 | طالب أمن سيبراني",
     startBtn: "ابدأ الرحلة 🚀",
-    contactBtn: "تواصل معي 📧",
+    contactBtn: "تواصل معي ✉️",
     progressTitle: "تقدمك في الـ Roadmap",
     resetBtn: '<i class="fas fa-rotate-right"></i> إعادة تعيين',
     searchPlaceholder: "🔍 ابحث في المراحل...",
-    aboutHeader: 'نبذة عني 📌<div class="title-line"></div>',
+    aboutHeader: 'نبذة عني<div class="title-line"></div>',
     skillsTitle: "أهدافي والمهارات",
     skillsDesc: "بناء مسار تعليمي واضح، وتطوير مهارات التحليل الأمني والاستجابة للحوادث، والمساهمة في المجتمع التقني.",
     aboutMeTitle: "من أنا؟",
-    aboutMeDesc: "أنا رودينا أحمد، مهتمة ومتخصصة في مجال الأمن السيبراني وتحديداً الـ SOC Tier 1 و Blue Teaming. قمت بإنشاء خارطة الطريق هذه لمساعدة الراغبين في دخول المجال بطريقة منظمة وعملية.",
-    pdfHeader: 'تحميل PDF 📑<div class="title-line"></div>',
+    aboutMeDesc: "أنا رودبنا احمد، مهتمة ومتخصصة في مجال الأمن السيبراني وتحديداً الـ SOC Tier 1 و Blue Teaming. قمت بإنشاء خارطة الطريق هذه لمساعدة الراغبين في دخول المجال بطريقة منظمة وعملية.",
+    pdfHeader: 'تحميل PDF<div class="title-line"></div>',
     pdfText: "اضغط لفتح نسخة قابلة للطباعة من الـ Roadmap.",
     pdfBtn: "🖨️ طباعة / حفظ PDF",
-    contactHeader: 'تواصل معي 📧<div class="title-line"></div>',
+    contactHeader: 'تواصل معي<div class="title-line"></div>',
     stageBadgePrefix: "المرحلة ",
     stageCountText: "مراحل",
     doneBtn: "مكتملة",
@@ -805,21 +861,22 @@ const dictionary = {
     navPdf: "Download PDF",
     navRoadmap: "Roadmap",
     navAbout: "About Me",
-    heroTitle: 'SOC Tier 1 Roadmap 🧩<div class="title-line"></div>',
+    heroName: "Rodina Ahmed",
+    heroTitleSub: "Cyber Security Analyst | SOC Tier 1 | Cybersecurity Student",
     startBtn: "Start Journey 🚀",
-    contactBtn: "Contact Me 📧",
+    contactBtn: "Contact Me ✉️",
     progressTitle: "Your Roadmap Progress",
     resetBtn: '<i class="fas fa-rotate-right"></i> Reset',
     searchPlaceholder: "🔍 Search stages...",
-    aboutHeader: 'About Me 📌<div class="title-line"></div>',
+    aboutHeader: 'About Me<div class="title-line"></div>',
     skillsTitle: "Goals & Skills",
     skillsDesc: "Building a clear educational path, developing security analysis and incident response skills, and contributing to the tech community.",
     aboutMeTitle: "Who Am I?",
     aboutMeDesc: "I am Rodina Ahmed, specialized in Cybersecurity with a focus on SOC Tier 1 and Blue Teaming. I created this roadmap to help aspirants enter the field in an organized and practical way.",
-    pdfHeader: 'Download PDF 📑<div class="title-line"></div>',
+    pdfHeader: 'Download PDF<div class="title-line"></div>',
     pdfText: "Click to open a printable version of the Roadmap.",
     pdfBtn: "🖨️ Print / Save PDF",
-    contactHeader: 'Contact Me 📧<div class="title-line"></div>',
+    contactHeader: 'Contact Me<div class="title-line"></div>',
     stageBadgePrefix: "Stage ",
     stageCountText: "Stages",
     doneBtn: "Completed",
@@ -918,14 +975,14 @@ function toggleLang() {
   currentLang = currentLang === "ar" ? "en" : "ar";
   document.documentElement.lang = currentLang;
   document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
-  document.getElementById("langBtn").innerText = currentLang === "ar" ? "EN 🌐" : "عربي 🌐";
 
   const t = dictionary[currentLang];
   document.getElementById("navContact").innerText = t.navContact;
   document.getElementById("navPdf").innerText = t.navPdf;
   document.getElementById("navRoadmap").innerText = t.navRoadmap;
   document.getElementById("navAbout").innerText = t.navAbout;
-  document.getElementById("heroTitle").innerHTML = t.heroTitle;
+  document.getElementById("heroName").innerText = t.heroName;
+  document.getElementById("heroTitleSub").innerText = t.heroTitleSub;
   document.getElementById("startBtn").innerText = t.startBtn;
   document.getElementById("contactBtn").innerText = t.contactBtn;
   document.getElementById("progressTitle").innerText = t.progressTitle;
