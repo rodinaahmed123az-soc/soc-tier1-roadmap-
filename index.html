@@ -200,35 +200,6 @@ nav {
   transform: translateY(-2px);
 }
 
-/* Social Icons */
-.social-links {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-}
-
-.social-btn {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--border-color);
-  color: var(--text-main);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  text-decoration: none;
-  transition: 0.3s;
-}
-
-.social-btn:hover {
-  color: var(--green-accent);
-  border-color: var(--green-accent);
-  transform: translateY(-3px);
-  box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
-}
-
 /* About Section */
 .about-section {
   max-width: 1000px;
@@ -236,7 +207,7 @@ nav {
   padding: 0 20px;
 }
 
-.about-title {
+.section-title {
   text-align: center;
   font-size: 2rem;
   font-weight: 800;
@@ -271,7 +242,6 @@ nav {
   margin-bottom: 20px;
 }
 
-/* Skill Tags inside About */
 .skills-container {
   display: flex;
   flex-wrap: wrap;
@@ -418,6 +388,108 @@ nav {
   color: #000;
 }
 
+/* PDF Section */
+.pdf-section {
+  max-width: 800px;
+  margin: 0 auto 60px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.pdf-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.pdf-icon {
+  font-size: 3rem;
+  color: #e11d48;
+}
+
+.pdf-text {
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+.btn-cyan {
+  background: var(--cyan-accent);
+  color: #000;
+  font-weight: 800;
+  padding: 10px 28px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.3s;
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+}
+
+.btn-cyan:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(0, 229, 255, 0.5);
+}
+
+/* Contact Section */
+.contact-section {
+  max-width: 800px;
+  margin: 0 auto 80px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.contact-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 35px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.contact-item {
+  font-size: 1.05rem;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contact-item a {
+  color: var(--cyan-accent);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.contact-item a:hover {
+  text-decoration: underline;
+}
+
+/* Print Style for PDF Button */
+@media print {
+  nav, .hero-section, .about-section, .pdf-section, .contact-section, .status-btn {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+    color: #000;
+  }
+  .stage-card {
+    border: 1px solid #ccc;
+    break-inside: avoid;
+  }
+}
+
 @media (max-width: 768px) {
   .about-grid { grid-template-columns: 1fr; }
   .nav-links { display: none; }
@@ -438,8 +510,8 @@ nav {
 </a>
 
 <div class="nav-links">
-  <a href="mailto:rodinaahmed123az@gmail.com">تواصل</a>
-  <a href="SOC_Roadmap.pdf" download>تحميل PDF</a>
+  <a href="#contact">تواصل</a>
+  <a href="#pdf">تحميل PDF</a>
   <a href="#roadmap">الـ Roadmap</a>
   <a href="#about">نبذة عني</a>
 </div>
@@ -456,7 +528,6 @@ nav {
 
 <!-- Hero Section -->
 <div class="hero-section">
-  <!-- الصورة الشخصية المربوطة بـ profile.jpeg -->
   <div class="profile-avatar-container">
     <img src="profile.jpeg" alt="Rodina Ahmed" class="profile-avatar">
   </div>
@@ -467,24 +538,15 @@ nav {
   
   <div class="hero-buttons">
     <a href="#roadmap" class="btn-primary">ابدأ الرحلة 🚀</a>
-    <a href="mailto:rodinaahmed123az@gmail.com" class="btn-outline">تواصل معي 📧</a>
-  </div>
-
-  <!-- رابط LinkedIn فقط -->
-  <div class="social-links">
-    <a href="https://www.linkedin.com/in/rodina-ahmed-4049a6375" target="_blank" class="social-btn" title="LinkedIn">
-      <i class="fab fa-linkedin-in"></i>
-    </a>
+    <a href="#contact" class="btn-outline">تواصل معي 📧</a>
   </div>
 </div>
 
 <!-- About Section -->
 <section class="about-section" id="about">
-  <h2 class="about-title">نبذة عني 📌</h2>
+  <h2 class="section-title">نبذة عني 📌</h2>
 
   <div class="about-grid">
-    
-    <!-- بطاقة أهدافي والمهارات -->
     <div class="about-card">
       <h3 class="card-title">أهدافي والمهارات</h3>
       <p class="card-desc">
@@ -503,20 +565,48 @@ nav {
       </div>
     </div>
 
-    <!-- بطاقة من أنا؟ -->
     <div class="about-card">
       <h3 class="card-title">من أنا؟</h3>
       <p class="card-desc">
         أنا رودينا أحمد، مهتمة ومتخصصة في مجال الأمن السيبراني وتحديداً الـ SOC Tier 1 و Blue Teaming. قمت بإنشاء خارطة الطريق هذه لمساعدة الراغبين في دخول المجال بطريقة منظمة وعملية.
       </p>
     </div>
-
   </div>
 </section>
 
 <!-- Roadmap Section -->
 <section class="roadmap-section" id="roadmap">
   <div id="roadmapContainer"></div>
+</section>
+
+<!-- PDF Section (تحميل / طباعة) -->
+<section class="pdf-section" id="pdf">
+  <h2 class="section-title">تحميل PDF 📑</h2>
+  <div class="pdf-card">
+    <i class="fas fa-book-open pdf-icon"></i>
+    <p class="pdf-text">اضغط لفتح نسخة قابلة للطباعة من الـ Roadmap.</p>
+    <button class="btn-cyan" onclick="window.print()">
+      🖨️ طباعة / حفظ PDF
+    </button>
+  </div>
+</section>
+
+<!-- Contact Section (تواصل معي) -->
+<section class="contact-section" id="contact">
+  <h2 class="section-title">تواصل معي 📧</h2>
+  <div class="contact-card">
+    <div class="contact-item">
+      <span>Email:</span>
+      <a href="mailto:rodinaahmed123az@gmail.com">rodinaahmed123az@gmail.com ✉️</a>
+    </div>
+    <div class="contact-item">
+      <span>LinkedIn:</span>
+      <a href="https://www.linkedin.com/in/rodina-ahmed-4049a6375" target="_blank">Rodina Ahmed 🔗</a>
+    </div>
+    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">
+      يمكنك التواصل عبر أي من الطرق أعلاه.
+    </p>
+  </div>
 </section>
 
 <script>
