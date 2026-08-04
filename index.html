@@ -18,15 +18,21 @@
   --border-color: #1a233a;
   --green-accent: #00ff88;
   --cyan-accent: #00E5FF;
+  --nav-bg: rgba(8, 12, 20, 0.9);
+  --matrix-opacity: 0.45;
   --font-family: 'Cairo', sans-serif;
 }
 
-.light {
-  --bg-deep: #F8FAFC;
-  --card-bg: rgba(255, 255, 255, 0.9);
-  --text-main: #111827;
+body.light {
+  --bg-deep: #F1F5F9;
+  --card-bg: #FFFFFF;
+  --text-main: #0F172A;
   --text-muted: #475569;
-  --border-color: #E2E8F0;
+  --border-color: #CBD5E1;
+  --green-accent: #10B981;
+  --cyan-accent: #0284C7;
+  --nav-bg: rgba(255, 255, 255, 0.95);
+  --matrix-opacity: 0;
 }
 
 * {
@@ -40,12 +46,11 @@
 body {
   background: var(--bg-deep);
   color: var(--text-main);
-  transition: 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease;
   overflow-x: hidden;
   position: relative;
 }
 
-/* Matrix Background Canvas */
 #matrixCanvas {
   position: fixed;
   top: 0;
@@ -54,18 +59,19 @@ body {
   height: 100vh;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.45;
+  opacity: var(--matrix-opacity);
+  transition: opacity 0.3s ease;
 }
 
-/* Navbar */
 nav {
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000;
-  background: rgba(8, 12, 20, 0.9);
+  background: var(--nav-bg);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-color);
+  transition: 0.3s;
 }
 
 .nav-container {
@@ -85,10 +91,6 @@ nav {
   font-size: 1.4rem;
   font-weight: 800;
   color: var(--green-accent);
-}
-
-.logo-icon {
-  font-size: 1.3rem;
 }
 
 .nav-links {
@@ -116,7 +118,7 @@ nav {
 }
 
 .lang-btn {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(125, 125, 125, 0.1);
   color: var(--text-main);
   border: 1px solid var(--border-color);
   padding: 6px 14px;
@@ -124,11 +126,12 @@ nav {
   cursor: pointer;
   font-weight: 600;
   font-size: 0.85rem;
+  transition: 0.3s;
 }
 
 .theme-toggle-bubble {
-  background: rgba(255, 255, 255, 0.05);
-  color: #fbbf24;
+  background: rgba(125, 125, 125, 0.1);
+  color: var(--text-main);
   border: 1px solid var(--border-color);
   width: 38px;
   height: 38px;
@@ -140,7 +143,6 @@ nav {
   font-size: 1rem;
 }
 
-/* Hero Section */
 .hero-section {
   padding-top: 120px;
   text-align: center;
@@ -156,7 +158,7 @@ nav {
   height: 130px;
   border-radius: 50%;
   border: 3px solid var(--green-accent);
-  box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
   object-fit: cover;
 }
 
@@ -165,6 +167,7 @@ nav {
   font-size: 0.95rem;
   margin-bottom: 25px;
   letter-spacing: 0.5px;
+  font-weight: 600;
 }
 
 .hero-buttons {
@@ -177,7 +180,7 @@ nav {
 
 .btn-primary {
   background: var(--green-accent);
-  color: #000;
+  color: #fff;
   font-weight: 800;
   padding: 10px 24px;
   border-radius: 10px;
@@ -189,9 +192,13 @@ nav {
   border: none;
 }
 
+body:not(.light) .btn-primary {
+  color: #000;
+}
+
 .btn-primary:hover {
-  box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
   transform: translateY(-2px);
+  opacity: 0.9;
 }
 
 .btn-outline {
@@ -213,12 +220,12 @@ nav {
   transform: translateY(-2px);
 }
 
-/* Section Title */
 .section-title {
   text-align: center;
   font-size: 2.2rem;
   font-weight: 800;
   margin-bottom: 25px;
+  color: var(--text-main);
 }
 
 .title-line {
@@ -229,7 +236,6 @@ nav {
   border-radius: 2px;
 }
 
-/* Progress Bar Container */
 .progress-container {
   max-width: 900px;
   margin: 0 auto 30px;
@@ -245,18 +251,13 @@ nav {
   font-size: 0.95rem;
 }
 
-.progress-title {
-  color: var(--text-main);
-}
-
-.progress-count {
-  color: var(--cyan-accent);
-}
+.progress-title { color: var(--text-main); }
+.progress-count { color: var(--cyan-accent); }
 
 .progress-bar-bg {
   width: 100%;
   height: 12px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(125, 125, 125, 0.15);
   border-radius: 10px;
   overflow: hidden;
   border: 1px solid var(--border-color);
@@ -269,11 +270,10 @@ nav {
   background: linear-gradient(90deg, var(--green-accent), var(--cyan-accent));
   border-radius: 10px;
   transition: width 0.4s ease;
-  box-shadow: 0 0 12px rgba(0, 229, 255, 0.5);
 }
 
 .reset-btn {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(125, 125, 125, 0.1);
   color: var(--text-muted);
   border: 1px solid var(--border-color);
   padding: 4px 12px;
@@ -285,15 +285,16 @@ nav {
   align-items: center;
   gap: 5px;
   transition: 0.3s;
-  float: left;
 }
+
+html[dir="rtl"] .reset-btn { float: left; }
+html[dir="ltr"] .reset-btn { float: right; }
 
 .reset-btn:hover {
-  color: #f87171;
-  border-color: #f87171;
+  color: #ef4444;
+  border-color: #ef4444;
 }
 
-/* Search Box */
 .search-container {
   max-width: 600px;
   margin: 40px auto 40px;
@@ -304,7 +305,6 @@ nav {
 .search-box {
   width: 100%;
   background: var(--card-bg);
-  backdrop-filter: blur(10px);
   border: 1px solid var(--border-color);
   border-radius: 25px;
   padding: 12px 20px;
@@ -313,14 +313,13 @@ nav {
   outline: none;
   text-align: center;
   transition: 0.3s;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
 }
 
 .search-box:focus {
   border-color: var(--cyan-accent);
-  box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
 }
 
-/* About Section */
 .about-section {
   max-width: 1000px;
   margin: 0 auto 60px;
@@ -335,12 +334,14 @@ nav {
 
 .about-card {
   background: var(--card-bg);
-  backdrop-filter: blur(10px);
   border: 1px solid var(--border-color);
   border-radius: 16px;
   padding: 30px;
-  text-align: right;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
 }
+
+html[dir="rtl"] .about-card { text-align: right; }
+html[dir="ltr"] .about-card { text-align: left; }
 
 .card-title {
   color: var(--green-accent);
@@ -350,7 +351,7 @@ nav {
 }
 
 .card-desc {
-  color: #cbd5e1;
+  color: var(--text-muted);
   font-size: 0.95rem;
   line-height: 1.8;
   margin-bottom: 20px;
@@ -360,11 +361,13 @@ nav {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  justify-content: flex-end;
 }
 
+html[dir="rtl"] .skills-container { justify-content: flex-end; }
+html[dir="ltr"] .skills-container { justify-content: flex-start; }
+
 .skill-tag {
-  background: rgba(0, 255, 136, 0.05);
+  background: rgba(16, 185, 129, 0.1);
   border: 1px solid var(--green-accent);
   color: var(--green-accent);
   padding: 4px 12px;
@@ -373,7 +376,6 @@ nav {
   font-weight: 700;
 }
 
-/* Roadmap Section */
 .roadmap-section {
   max-width: 1000px;
   margin: 0 auto 80px;
@@ -382,29 +384,25 @@ nav {
 
 .stage-card {
   background: var(--card-bg);
-  backdrop-filter: blur(10px);
   border: 1px solid var(--border-color);
   border-radius: 16px;
   padding: 30px;
   margin-bottom: 25px;
   transition: 0.3s ease;
-}
-
-.stage-card:hover {
-  border-color: rgba(0, 229, 255, 0.4);
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
 }
 
 .stage-header {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
-  gap: 12px;
   margin-bottom: 15px;
 }
 
 .stage-title {
   font-size: 1.4rem;
   font-weight: 800;
+  color: var(--text-main);
 }
 
 .stage-badge {
@@ -412,38 +410,42 @@ nav {
   border-radius: 12px;
   font-weight: 800;
   font-size: 0.88rem;
-  color: #000;
+  color: #fff;
 }
 
-.badge-0 { background: #38bdf8; }
-.badge-1 { background: #4ade80; }
-.badge-2 { background: #facc15; }
-.badge-3 { background: #f87171; }
-.badge-4 { background: #c084fc; }
-.badge-5 { background: #fb923c; }
-.badge-6 { background: #a16207; color: #fff; }
-.badge-7 { background: #94a3b8; }
+.badge-0 { background: #0284c7; }
+.badge-1 { background: #10b981; }
+.badge-2 { background: #eab308; color: #000; }
+.badge-3 { background: #ef4444; }
+.badge-4 { background: #8b5cf6; }
+.badge-5 { background: #f97316; }
+.badge-6 { background: #b45309; }
+.badge-7 { background: #64748b; }
 
 .stage-description {
-  text-align: right;
   color: var(--text-muted);
   font-size: 0.95rem;
   margin-bottom: 20px;
   line-height: 1.6;
 }
 
+html[dir="rtl"] .stage-description { text-align: right; }
+html[dir="ltr"] .stage-description { text-align: left; }
+
 .resource-buttons {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
   gap: 12px;
   margin-bottom: 20px;
 }
 
+html[dir="rtl"] .resource-buttons { justify-content: flex-end; }
+html[dir="ltr"] .resource-buttons { justify-content: flex-start; }
+
 .res-btn {
-  background: rgba(0, 229, 255, 0.08);
+  background: rgba(2, 132, 199, 0.1);
   color: var(--cyan-accent);
-  border: 1px solid rgba(0, 229, 255, 0.4);
+  border: 1px solid var(--cyan-accent);
   padding: 8px 18px;
   border-radius: 20px;
   text-decoration: none;
@@ -457,21 +459,23 @@ nav {
 
 .res-btn:hover {
   background: var(--cyan-accent);
-  color: #000;
+  color: #fff;
 }
 
 .tags-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
   gap: 8px;
   margin-bottom: 20px;
 }
 
+html[dir="rtl"] .tags-container { justify-content: flex-end; }
+html[dir="ltr"] .tags-container { justify-content: flex-start; }
+
 .tag-capsule {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #cbd5e1;
+  background: rgba(125, 125, 125, 0.1);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
   padding: 4px 12px;
   border-radius: 12px;
   font-size: 0.78rem;
@@ -480,13 +484,15 @@ nav {
 
 .complete-action {
   display: flex;
-  justify-content: flex-end;
 }
+
+html[dir="rtl"] .complete-action { justify-content: flex-end; }
+html[dir="ltr"] .complete-action { justify-content: flex-start; }
 
 .status-btn {
   background: transparent;
-  color: #22c55e;
-  border: 1px solid #22c55e;
+  color: var(--green-accent);
+  border: 1px solid var(--green-accent);
   padding: 7px 18px;
   border-radius: 20px;
   cursor: pointer;
@@ -499,11 +505,10 @@ nav {
 }
 
 .status-btn.done {
-  background: #22c55e;
-  color: #000;
+  background: var(--green-accent);
+  color: #fff;
 }
 
-/* PDF Section */
 .pdf-section {
   max-width: 800px;
   margin: 0 auto 60px;
@@ -513,7 +518,6 @@ nav {
 
 .pdf-card {
   background: var(--card-bg);
-  backdrop-filter: blur(10px);
   border: 1px solid var(--border-color);
   border-radius: 20px;
   padding: 40px 20px;
@@ -521,6 +525,7 @@ nav {
   flex-direction: column;
   align-items: center;
   gap: 15px;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
 }
 
 .pdf-icon {
@@ -535,7 +540,7 @@ nav {
 
 .btn-cyan {
   background: var(--cyan-accent);
-  color: #000;
+  color: #fff;
   font-weight: 800;
   padding: 10px 28px;
   border-radius: 12px;
@@ -546,15 +551,8 @@ nav {
   align-items: center;
   gap: 8px;
   transition: 0.3s;
-  box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
 }
 
-.btn-cyan:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 25px rgba(0, 229, 255, 0.5);
-}
-
-/* Contact Section */
 .contact-section {
   max-width: 800px;
   margin: 0 auto 80px;
@@ -564,7 +562,6 @@ nav {
 
 .contact-card {
   background: var(--card-bg);
-  backdrop-filter: blur(10px);
   border: 1px solid var(--border-color);
   border-radius: 20px;
   padding: 35px 20px;
@@ -572,6 +569,7 @@ nav {
   flex-direction: column;
   gap: 15px;
   align-items: center;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
 }
 
 .contact-item {
@@ -595,35 +593,32 @@ nav {
 @media (max-width: 768px) {
   .about-grid { grid-template-columns: 1fr; }
   .nav-links { display: none; }
-  .stage-header { flex-direction: column-reverse; align-items: flex-end; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- Matrix Rain Background -->
 <canvas id="matrixCanvas"></canvas>
 
-<!-- Navbar -->
 <nav>
 <div class="nav-container">
 
 <a href="#" class="logo">
   <span>Rodina Ahmed</span>
-  <i class="fas fa-shield-alt logo-icon"></i>
+  <i class="fas fa-shield-alt"></i>
 </a>
 
 <div class="nav-links">
-  <a href="#contact">تواصل</a>
-  <a href="#pdf">تحميل PDF</a>
-  <a href="#roadmap">الـ Roadmap</a>
-  <a href="#about">نبذة عني</a>
+  <a href="#contact" id="navContact">تواصل</a>
+  <a href="#pdf" id="navPdf">تحميل PDF</a>
+  <a href="#roadmap" id="navRoadmap">الـ Roadmap</a>
+  <a href="#about" id="navAbout">نبذة عني</a>
 </div>
 
 <div class="controls-group">
-  <button class="lang-btn" onclick="toggleLang()">عربي / EN 🌐</button>
-  <button class="theme-toggle-bubble" onclick="toggleTheme()">
+  <button class="lang-btn" onclick="toggleLang()" id="langBtn">EN 🌐</button>
+  <button class="theme-toggle-bubble" onclick="toggleTheme()" id="themeBtn">
     <i class="fas fa-sun"></i>
   </button>
 </div>
@@ -631,13 +626,12 @@ nav {
 </div>
 </nav>
 
-<!-- Hero Section -->
 <div class="hero-section">
   <div class="profile-avatar-container">
     <img src="profile.jpeg" alt="Rodina Ahmed" class="profile-avatar">
   </div>
 
-  <h1 class="section-title">
+  <h1 class="section-title" id="heroTitle">
     خارطة طريق SOC Tier 1 🧩
     <div class="title-line"></div>
   </h1>
@@ -647,38 +641,35 @@ nav {
   </div>
   
   <div class="hero-buttons">
-    <a href="#roadmap" class="btn-primary">ابدأ الرحلة 🚀</a>
-    <a href="#contact" class="btn-outline">تواصل معي 📧</a>
+    <a href="#roadmap" class="btn-primary" id="startBtn">ابدأ الرحلة 🚀</a>
+    <a href="#contact" class="btn-outline" id="contactBtn">تواصل معي 📧</a>
   </div>
 </div>
 
-<!-- Progress Bar Section -->
 <div class="progress-container">
   <div class="progress-header">
     <span class="progress-count" id="progressCount">0 / 8 مراحل</span>
-    <span class="progress-title">تقدمك في الـ Roadmap</span>
+    <span class="progress-title" id="progressTitle">تقدمك في الـ Roadmap</span>
   </div>
   <div class="progress-bar-bg">
     <div class="progress-bar-fill" id="progressBarFill"></div>
   </div>
-  <button class="reset-btn" onclick="resetProgress()">
+  <button class="reset-btn" onclick="resetProgress()" id="resetBtn">
     <i class="fas fa-rotate-right"></i> إعادة تعيين
   </button>
 </div>
 
-<!-- Search Input -->
 <div class="search-container">
   <input type="text" id="searchInput" class="search-box" placeholder="🔍 ابحث في المراحل..." oninput="renderRoadmap()">
 </div>
 
-<!-- About Section -->
 <section class="about-section" id="about">
-  <h2 class="section-title">نبذة عني 📌</h2>
+  <h2 class="section-title" id="aboutHeader">نبذة عني 📌</h2>
 
   <div class="about-grid">
     <div class="about-card">
-      <h3 class="card-title">أهدافي والمهارات</h3>
-      <p class="card-desc">
+      <h3 class="card-title" id="skillsTitle">أهدافي والمهارات</h3>
+      <p class="card-desc" id="skillsDesc">
         بناء مسار تعليمي واضح، وتطوير مهارات التحليل الأمني والاستجابة للحوادث، والمساهمة في المجتمع التقني.
       </p>
 
@@ -695,34 +686,31 @@ nav {
     </div>
 
     <div class="about-card">
-      <h3 class="card-title">من أنا؟</h3>
-      <p class="card-desc">
+      <h3 class="card-title" id="aboutMeTitle">من أنا؟</h3>
+      <p class="card-desc" id="aboutMeDesc">
         أنا رودينا أحمد، مهتمة ومتخصصة في مجال الأمن السيبراني وتحديداً الـ SOC Tier 1 و Blue Teaming. قمت بإنشاء خارطة الطريق هذه لمساعدة الراغبين في دخول المجال بطريقة منظمة وعملية.
       </p>
     </div>
   </div>
 </section>
 
-<!-- Roadmap Section -->
 <section class="roadmap-section" id="roadmap">
   <div id="roadmapContainer"></div>
 </section>
 
-<!-- PDF Section -->
 <section class="pdf-section" id="pdf">
-  <h2 class="section-title">تحميل PDF 📑</h2>
+  <h2 class="section-title" id="pdfHeader">تحميل PDF 📑</h2>
   <div class="pdf-card">
     <i class="fas fa-book-open pdf-icon"></i>
-    <p class="pdf-text">اضغط لفتح نسخة قابلة للطباعة من الـ Roadmap.</p>
-    <button class="btn-cyan" onclick="window.print()">
+    <p class="pdf-text" id="pdfText">اضغط لفتح نسخة قابلة للطباعة من الـ Roadmap.</p>
+    <button class="btn-cyan" onclick="window.print()" id="pdfBtn">
       🖨️ طباعة / حفظ PDF
     </button>
   </div>
 </section>
 
-<!-- Contact Section -->
 <section class="contact-section" id="contact">
-  <h2 class="section-title">تواصل معي 📧</h2>
+  <h2 class="section-title" id="contactHeader">تواصل معي 📧</h2>
   <div class="contact-card">
     <div class="contact-item">
       <span>Email:</span>
@@ -736,7 +724,7 @@ nav {
 </section>
 
 <script>
-// --- Matrix Rain Effect Script ---
+// --- Matrix Canvas ---
 const canvas = document.getElementById("matrixCanvas");
 const ctx = canvas.getContext("2d");
 
@@ -755,47 +743,107 @@ let drops = Array(columns).fill(1);
 function drawMatrix() {
   ctx.fillStyle = "rgba(5, 8, 17, 0.08)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-
   ctx.fillStyle = "#00ff88";
   ctx.font = fontSize + "px monospace";
 
   columns = Math.floor(canvas.width / fontSize);
-  if (drops.length < columns) {
-    drops = Array(columns).fill(1);
-  }
+  if (drops.length < columns) drops = Array(columns).fill(1);
 
   for (let i = 0; i < drops.length; i++) {
     const text = chars.charAt(Math.floor(Math.random() * chars.length));
     ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-      drops[i] = 0;
-    }
+    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
     drops[i]++;
   }
 }
 setInterval(drawMatrix, 33);
 
-// --- Roadmap Data ---
+// --- Theme Toggle ---
+function toggleTheme() {
+  document.body.classList.toggle("light");
+  const themeBtn = document.getElementById("themeBtn");
+  if(document.body.classList.contains("light")) {
+    themeBtn.innerHTML = '<i class="fas fa-moon"></i>';
+  } else {
+    themeBtn.innerHTML = '<i class="fas fa-sun"></i>';
+  }
+}
+
+// --- Multi-Language Data ---
+let currentLang = "ar";
+
+const dictionary = {
+  ar: {
+    navContact: "تواصل",
+    navPdf: "تحميل PDF",
+    navRoadmap: "الـ Roadmap",
+    navAbout: "نبذة عني",
+    heroTitle: 'خارطة طريق SOC Tier 1 🧩<div class="title-line"></div>',
+    startBtn: "ابدأ الرحلة 🚀",
+    contactBtn: "تواصل معي 📧",
+    progressTitle: "تقدمك في الـ Roadmap",
+    resetBtn: '<i class="fas fa-rotate-right"></i> إعادة تعيين',
+    searchPlaceholder: "🔍 ابحث في المراحل...",
+    aboutHeader: 'نبذة عني 📌<div class="title-line"></div>',
+    skillsTitle: "أهدافي والمهارات",
+    skillsDesc: "بناء مسار تعليمي واضح، وتطوير مهارات التحليل الأمني والاستجابة للحوادث، والمساهمة في المجتمع التقني.",
+    aboutMeTitle: "من أنا؟",
+    aboutMeDesc: "أنا رودينا أحمد، مهتمة ومتخصصة في مجال الأمن السيبراني وتحديداً الـ SOC Tier 1 و Blue Teaming. قمت بإنشاء خارطة الطريق هذه لمساعدة الراغبين في دخول المجال بطريقة منظمة وعملية.",
+    pdfHeader: 'تحميل PDF 📑<div class="title-line"></div>',
+    pdfText: "اضغط لفتح نسخة قابلة للطباعة من الـ Roadmap.",
+    pdfBtn: "🖨️ طباعة / حفظ PDF",
+    contactHeader: 'تواصل معي 📧<div class="title-line"></div>',
+    stageBadgePrefix: "المرحلة ",
+    stageCountText: "مراحل",
+    doneBtn: "مكتملة",
+    todoBtn: "تحديد كمكتمل",
+    confirmReset: "هل أنتِ متأكدة من إعادة تعيين كافة المراحل المكتملة؟",
+    noResults: "لا توجد نتائج تطابق بحثك."
+  },
+  en: {
+    navContact: "Contact",
+    navPdf: "Download PDF",
+    navRoadmap: "Roadmap",
+    navAbout: "About Me",
+    heroTitle: 'SOC Tier 1 Roadmap 🧩<div class="title-line"></div>',
+    startBtn: "Start Journey 🚀",
+    contactBtn: "Contact Me 📧",
+    progressTitle: "Your Roadmap Progress",
+    resetBtn: '<i class="fas fa-rotate-right"></i> Reset',
+    searchPlaceholder: "🔍 Search stages...",
+    aboutHeader: 'About Me 📌<div class="title-line"></div>',
+    skillsTitle: "Goals & Skills",
+    skillsDesc: "Building a clear educational path, developing security analysis and incident response skills, and contributing to the tech community.",
+    aboutMeTitle: "Who Am I?",
+    aboutMeDesc: "I am Rodina Ahmed, specialized in Cybersecurity with a focus on SOC Tier 1 and Blue Teaming. I created this roadmap to help aspirants enter the field in an organized and practical way.",
+    pdfHeader: 'Download PDF 📑<div class="title-line"></div>',
+    pdfText: "Click to open a printable version of the Roadmap.",
+    pdfBtn: "🖨️ Print / Save PDF",
+    contactHeader: 'Contact Me 📧<div class="title-line"></div>',
+    stageBadgePrefix: "Stage ",
+    stageCountText: "Stages",
+    doneBtn: "Completed",
+    todoBtn: "Mark as Complete",
+    confirmReset: "Are you sure you want to reset all completed stages?",
+    noResults: "No matching results found."
+  }
+};
+
 const stagesData = [
   {
     id: 0,
-    title: "أساسيات الشبكات",
-    badge: "المرحلة 0",
-    badgeClass: "badge-0",
-    desc: "يجب دراسة أساسيات الشبكات من خلال Network+ أو CCNA (نظري فقط بدون تعمق زائد).",
+    title: { ar: "أساسيات الشبكات", en: "Networking Fundamentals" },
+    desc: { ar: "يجب دراسة أساسيات الشبكات من خلال Network+ أو CCNA (نظري فقط بدون تعمق زائد).", en: "Study networking fundamentals via Network+ or CCNA (theory level without over-depth)." },
     links: [
-      { text: "+Network 📺", url: "https://m.youtube.com/playlist?list=PLLlr6jKKdyK1zEvFvbRefQSngzxoYGID1&ra=m" },
+      { text: "Network+ 📺", url: "https://m.youtube.com/playlist?list=PLLlr6jKKdyK1zEvFvbRefQSngzxoYGID1&ra=m" },
       { text: "CCNA 📺", url: "https://m.youtube.com/playlist?list=PLAqaqJU4wzYU_6EIzVoxHghQILgyY--yf&ra=m" }
     ],
     tags: ["Group Policy", "UDP vs TCP", "ARP Table", "OSI Model", "IP Addressing", "Ports", "Protocols", "Routing", "Switching", "Port Security", "DNS", "DHCP", "Domain Controller"]
   },
   {
     id: 1,
-    title: "Windows و Active Directory",
-    badge: "المرحلة 1",
-    badgeClass: "badge-1",
-    desc: "فهم بيئة الـ Active Directory و Windows Domain من خلال شهادة MCSA.",
+    title: { ar: "Windows و Active Directory", en: "Windows & Active Directory" },
+    desc: { ar: "فهم بيئة الـ Active Directory و Windows Domain من خلال شهادة MCSA.", en: "Understand Active Directory environments and Windows Domains via MCSA." },
     links: [
       { text: "MCSA Playlist 📺", url: "https://m.youtube.com/playlist?list=PLped9VG7STA9vZFYwVIIbnSdfu8gKUpm2&ra=m" }
     ],
@@ -803,10 +851,8 @@ const stagesData = [
   },
   {
     id: 2,
-    title: "أساسيات Linux",
-    badge: "المرحلة 2",
-    badgeClass: "badge-2",
-    desc: "تعلم أوامر Linux الأساسية، نظام الملفات، الصلاحيات، SSH، وتحليل السجلات.",
+    title: { ar: "أساسيات Linux", en: "Linux Fundamentals" },
+    desc: { ar: "تعلم أوامر Linux الأساسية، نظام الملفات، الصلاحيات، SSH، وتحليل السجلات.", en: "Learn essential Linux commands, file systems, permissions, SSH, and log analysis." },
     links: [
       { text: "Linux Playlist 📺", url: "https://youtube.com/playlist?list=PLDRMxi70CdSD48OPJbsDZRt4l0GvWJ2iG&si=ExBdy34J9uO39SJY" }
     ],
@@ -814,10 +860,8 @@ const stagesData = [
   },
   {
     id: 3,
-    title: "أساسيات الأمن السيبراني",
-    badge: "المرحلة 3",
-    badgeClass: "badge-3",
-    desc: "دراسة Security+ لفهم CIA Triad، التهديدات، إدارة المخاطر، والاستجابة للحوادث.",
+    title: { ar: "أساسيات الأمن السيبراني", en: "Cybersecurity Basics" },
+    desc: { ar: "دراسة Security+ لفهم CIA Triad، التهديدات، إدارة المخاطر، والاستجابة للحوادث.", en: "Study Security+ to grasp CIA Triad, threats, risk management, and incident response." },
     links: [
       { text: "Security+ Playlist 📺", url: "https://youtube.com/playlist?list=PLky4bd7_03m8o1NB0j96OsxZs0KcKlgMO&si=brYNqyjcsp26MNjy" }
     ],
@@ -825,10 +869,8 @@ const stagesData = [
   },
   {
     id: 4,
-    title: "SOC Level 1 + تطبيق عملي",
-    badge: "المرحلة 4",
-    badgeClass: "badge-4",
-    desc: "تطبيق عملي على منصات TryHackMe و LetsDefend و CyberDefenders.",
+    title: { ar: "SOC Level 1 + تطبيق عملي", en: "SOC Level 1 + Practical Labs" },
+    desc: { ar: "تطبيق عملي على منصات TryHackMe و LetsDefend و CyberDefenders.", en: "Hands-on practice using TryHackMe, LetsDefend, and CyberDefenders." },
     links: [
       { text: "TryHackMe 🖥️", url: "https://tryhackme.com/" },
       { text: "LetsDefend 🖥️", url: "https://letsdefend.io/" },
@@ -838,10 +880,8 @@ const stagesData = [
   },
   {
     id: 5,
-    title: "أدوات SIEM",
-    badge: "المرحلة 5",
-    badgeClass: "badge-5",
-    desc: "التركيز على Splunk مع BOTS datasets. أدوات أخرى اختبارية.",
+    title: { ar: "أدوات SIEM", en: "SIEM Tools" },
+    desc: { ar: "التركيز على Splunk مع BOTS datasets. أدوات أخرى اختبارية.", en: "Focus on Splunk using BOTS datasets. Other tools are optional." },
     links: [
       { text: "Splunk Training 🖥️", url: "https://www.splunk.com/en_us/training.html" },
       { text: "BOTS v1 🖥️", url: "https://github.com/splunk/botsv1" },
@@ -852,10 +892,8 @@ const stagesData = [
   },
   {
     id: 6,
-    title: "Python for SOC",
-    badge: "المرحلة 6",
-    badgeClass: "badge-6",
-    desc: "تعلم Python لتحليل سجلات CSV ،Windows، استخراج IOCs، وأتمتة التنبيهات.",
+    title: { ar: "Python for SOC", en: "Python for SOC" },
+    desc: { ar: "تعلم Python لتحليل سجلات CSV ،Windows، استخراج IOCs، وأتمتة التنبيهات.", en: "Learn Python to parse CSV/Windows logs, extract IOCs, and automate alerts." },
     links: [
       { text: "Python Playlist 📺", url: "https://youtube.com/playlist?list=PLDoPjvoNmBAyE_gei5d18qkfIe-Z8mocs&si=05I4omfh9Djp8WSD" }
     ],
@@ -863,10 +901,8 @@ const stagesData = [
   },
   {
     id: 7,
-    title: "الاستجابة للحوادث",
-    badge: "المرحلة 7",
-    badgeClass: "badge-7",
-    desc: "دراسة eCIR وملاحظات SOC وأسئلة المقابلات للتحضير النهائي.",
+    title: { ar: "الاستجابة للحوادث", en: "Incident Response" },
+    desc: { ar: "دراسة eCIR وملاحظات SOC وأسئلة المقابلات للتحضير النهائي.", en: "Study eCIR, SOC notes, and interview prep questions for final readiness." },
     links: [
       { text: "eCIR Course 🖥️", url: "https://netriders.academy/all-courses/incident-response/" },
       { text: "SOC Notes 🖥️", url: "https://drive.google.com/file/d/1WwARR5WFuhm2Xt1mi3gCJIFWDNwKqUhV/view" },
@@ -878,28 +914,60 @@ const stagesData = [
 
 let completedStages = JSON.parse(localStorage.getItem("soc_completed_stages")) || [];
 
+function toggleLang() {
+  currentLang = currentLang === "ar" ? "en" : "ar";
+  document.documentElement.lang = currentLang;
+  document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
+  document.getElementById("langBtn").innerText = currentLang === "ar" ? "EN 🌐" : "عربي 🌐";
+
+  const t = dictionary[currentLang];
+  document.getElementById("navContact").innerText = t.navContact;
+  document.getElementById("navPdf").innerText = t.navPdf;
+  document.getElementById("navRoadmap").innerText = t.navRoadmap;
+  document.getElementById("navAbout").innerText = t.navAbout;
+  document.getElementById("heroTitle").innerHTML = t.heroTitle;
+  document.getElementById("startBtn").innerText = t.startBtn;
+  document.getElementById("contactBtn").innerText = t.contactBtn;
+  document.getElementById("progressTitle").innerText = t.progressTitle;
+  document.getElementById("resetBtn").innerHTML = t.resetBtn;
+  document.getElementById("searchInput").placeholder = t.searchPlaceholder;
+  document.getElementById("aboutHeader").innerHTML = t.aboutHeader;
+  document.getElementById("skillsTitle").innerText = t.skillsTitle;
+  document.getElementById("skillsDesc").innerText = t.skillsDesc;
+  document.getElementById("aboutMeTitle").innerText = t.aboutMeTitle;
+  document.getElementById("aboutMeDesc").innerText = t.aboutMeDesc;
+  document.getElementById("pdfHeader").innerHTML = t.pdfHeader;
+  document.getElementById("pdfText").innerText = t.pdfText;
+  document.getElementById("pdfBtn").innerText = t.pdfBtn;
+  document.getElementById("contactHeader").innerHTML = t.contactHeader;
+
+  renderRoadmap();
+}
+
 function updateProgressBar() {
   const total = stagesData.length;
   const count = completedStages.length;
   const percentage = (count / total) * 100;
+  const t = dictionary[currentLang];
 
-  document.getElementById("progressCount").innerText = `${count} / ${total} مراحل`;
+  document.getElementById("progressCount").innerText = `${count} / ${total} ${t.stageCountText}`;
   document.getElementById("progressBarFill").style.width = `${percentage}%`;
 }
 
 function renderRoadmap() {
   const container = document.getElementById("roadmapContainer");
   const searchQuery = document.getElementById("searchInput") ? document.getElementById("searchInput").value.toLowerCase() : "";
+  const t = dictionary[currentLang];
   container.innerHTML = "";
 
   const filteredStages = stagesData.filter(stage => {
-    return stage.title.toLowerCase().includes(searchQuery) ||
-           stage.desc.toLowerCase().includes(searchQuery) ||
-           stage.tags.some(t => t.toLowerCase().includes(searchQuery));
+    const title = stage.title[currentLang].toLowerCase();
+    const desc = stage.desc[currentLang].toLowerCase();
+    return title.includes(searchQuery) || desc.includes(searchQuery) || stage.tags.some(tag => tag.toLowerCase().includes(searchQuery));
   });
 
   if (filteredStages.length === 0) {
-    container.innerHTML = `<p style="text-align:center; color: var(--text-muted); padding: 20px;">لا توجد نتائج تطابق بحثك.</p>`;
+    container.innerHTML = `<p style="text-align:center; color: var(--text-muted); padding: 20px;">${t.noResults}</p>`;
     return;
   }
 
@@ -911,11 +979,11 @@ function renderRoadmap() {
 
     card.innerHTML = `
       <div class="stage-header">
-        <h3 class="stage-title">${stage.title}</h3>
-        <span class="stage-badge ${stage.badgeClass}">${stage.badge}</span>
+        <h3 class="stage-title">${stage.title[currentLang]}</h3>
+        <span class="stage-badge badge-${stage.id}">${t.stageBadgePrefix} ${stage.id}</span>
       </div>
       
-      <p class="stage-description">${stage.desc}</p>
+      <p class="stage-description">${stage.desc[currentLang]}</p>
       
       <div class="resource-buttons">
         ${stage.links.map(link => `<a class="res-btn" href="${link.url}" target="_blank">${link.text}</a>`).join("")}
@@ -928,7 +996,7 @@ function renderRoadmap() {
       <div class="complete-action">
         <button class="status-btn ${isCompleted ? 'done' : ''}" onclick="toggleComplete(${stage.id})">
           <i class="fas ${isCompleted ? 'fa-check-square' : 'fa-check'}"></i>
-          ${isCompleted ? 'مكتملة' : 'تحديد كمكتمل'}
+          ${isCompleted ? t.doneBtn : t.todoBtn}
         </button>
       </div>
     `;
@@ -950,19 +1018,12 @@ function toggleComplete(id) {
 }
 
 function resetProgress() {
-  if (confirm("هل أنت متأكد من إعادة تعيين كافة المراحل المكتملة؟")) {
+  const t = dictionary[currentLang];
+  if (confirm(t.confirmReset)) {
     completedStages = [];
     localStorage.removeItem("soc_completed_stages");
     renderRoadmap();
   }
-}
-
-function toggleTheme() {
-  document.body.classList.toggle("light");
-}
-
-function toggleLang() {
-  alert("يمكنك تغيير اللغة هنا.");
 }
 
 renderRoadmap();
