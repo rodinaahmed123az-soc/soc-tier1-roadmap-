@@ -11,8 +11,8 @@
 
 <style>
 :root {
-  --bg-deep: #080c14;
-  --card-bg: #0d1527;
+  --bg-deep: #050811;
+  --card-bg: rgba(13, 21, 39, 0.85);
   --text-main: #FFFFFF;
   --text-muted: #94A3B8;
   --border-color: #1a233a;
@@ -23,7 +23,7 @@
 
 .light {
   --bg-deep: #F8FAFC;
-  --card-bg: #FFFFFF;
+  --card-bg: rgba(255, 255, 255, 0.9);
   --text-main: #111827;
   --text-muted: #475569;
   --border-color: #E2E8F0;
@@ -42,6 +42,19 @@ body {
   color: var(--text-main);
   transition: 0.3s ease;
   overflow-x: hidden;
+  position: relative;
+}
+
+/* Matrix Background Canvas */
+#matrixCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.45;
 }
 
 /* Navbar */
@@ -222,6 +235,7 @@ nav {
 
 .about-card {
   background: var(--card-bg);
+  backdrop-filter: blur(10px);
   border: 1px solid var(--border-color);
   border-radius: 16px;
   padding: 30px;
@@ -268,6 +282,7 @@ nav {
 
 .stage-card {
   background: var(--card-bg);
+  backdrop-filter: blur(10px);
   border: 1px solid var(--border-color);
   border-radius: 16px;
   padding: 30px;
@@ -398,6 +413,7 @@ nav {
 
 .pdf-card {
   background: var(--card-bg);
+  backdrop-filter: blur(10px);
   border: 1px solid var(--border-color);
   border-radius: 20px;
   padding: 40px 20px;
@@ -448,6 +464,7 @@ nav {
 
 .contact-card {
   background: var(--card-bg);
+  backdrop-filter: blur(10px);
   border: 1px solid var(--border-color);
   border-radius: 20px;
   padding: 35px 20px;
@@ -475,21 +492,6 @@ nav {
   text-decoration: underline;
 }
 
-/* Print Style for PDF Button */
-@media print {
-  nav, .hero-section, .about-section, .pdf-section, .contact-section, .status-btn {
-    display: none !important;
-  }
-  body {
-    background: #fff;
-    color: #000;
-  }
-  .stage-card {
-    border: 1px solid #ccc;
-    break-inside: avoid;
-  }
-}
-
 @media (max-width: 768px) {
   .about-grid { grid-template-columns: 1fr; }
   .nav-links { display: none; }
@@ -499,6 +501,9 @@ nav {
 </head>
 
 <body>
+
+<!-- Matrix Rain Background -->
+<canvas id="matrixCanvas"></canvas>
 
 <!-- Navbar -->
 <nav>
@@ -579,7 +584,7 @@ nav {
   <div id="roadmapContainer"></div>
 </section>
 
-<!-- PDF Section (تحميل / طباعة) -->
+<!-- PDF Section -->
 <section class="pdf-section" id="pdf">
   <h2 class="section-title">تحميل PDF 📑</h2>
   <div class="pdf-card">
@@ -591,7 +596,7 @@ nav {
   </div>
 </section>
 
-<!-- Contact Section (تواصل معي) -->
+<!-- Contact Section -->
 <section class="contact-section" id="contact">
   <h2 class="section-title">تواصل معي 📧</h2>
   <div class="contact-card">
@@ -603,13 +608,51 @@ nav {
       <span>LinkedIn:</span>
       <a href="https://www.linkedin.com/in/rodina-ahmed-4049a6375" target="_blank">Rodina Ahmed 🔗</a>
     </div>
-    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">
-      يمكنك التواصل عبر أي من الطرق أعلاه.
-    </p>
   </div>
 </section>
 
 <script>
+// --- Matrix Rain Effect Script ---
+const canvas = document.getElementById("matrixCanvas");
+const ctx = canvas.getContext("2d");
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
+
+const chars = "010101010101";
+const fontSize = 14;
+let columns = Math.floor(canvas.width / fontSize);
+let drops = Array(columns).fill(1);
+
+function drawMatrix() {
+  ctx.fillStyle = "rgba(5, 8, 17, 0.08)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  ctx.fillStyle = "#00ff88";
+  ctx.font = fontSize + "px monospace";
+
+  columns = Math.floor(canvas.width / fontSize);
+  if (drops.length < columns) {
+    drops = Array(columns).fill(1);
+  }
+
+  for (let i = 0; i < drops.length; i++) {
+    const text = chars.charAt(Math.floor(Math.random() * chars.length));
+    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+      drops[i] = 0;
+    }
+    drops[i]++;
+  }
+}
+setInterval(drawMatrix, 33);
+
+// --- Roadmap Data ---
 const stagesData = [
   {
     id: 0,
