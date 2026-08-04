@@ -601,7 +601,56 @@ lang==="ar"
 
 
 </script>
+<style>
 
+.progress-box{
+background:var(--card);
+border:1px solid var(--border);
+padding:20px;
+border-radius:15px;
+margin:20px 0;
+}
+
+.progress-bg{
+height:12px;
+background:#334155;
+border-radius:20px;
+overflow:hidden;
+}
+
+#progressBar{
+height:100%;
+width:0%;
+background:#00ff88;
+transition:.5s;
+}
+
+.complete-btn{
+margin-top:15px;
+padding:8px 15px;
+border-radius:8px;
+border:1px solid #00ff88;
+background:transparent;
+color:#00ff88;
+cursor:pointer;
+}
+
+</style>
+
+
+<script>
+
+let completed=[];
+
+function completeStage(btn){
+
+btn.innerHTML="✅ Completed";
+btn.style.background="#00ff88";
+btn.style.color="#000";
+
+}
+
+</script>
 
 </body>
 </html>
