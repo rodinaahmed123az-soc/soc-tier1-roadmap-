@@ -1,428 +1,179 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rodina Ahmed | SOC Tier 1 Roadmap</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<title>Rodina Ahmed | SOC Tier 1 Roadmap</title>
 
-    <style>
-        :root {
-            --bg-deep: #050811;
-            --card-bg: rgba(13, 21, 39, 0.85);
-            --text-main: #FFFFFF;
-            --text-muted: #94A3B8;
-            --border-color: #1a233a;
-            --green-accent: #00ff88;
-            --cyan-accent: #00E5FF;
-            --font-family: 'Cairo', sans-serif;
-        }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-        .light {
-            --bg-deep: #F8FAFC;
-            --card-bg: rgba(255, 255, 255, 0.9);
-            --text-main: #111827;
-            --text-muted: #475569;
-            --border-color: #E2E8F0;
-        }
+<style>
+:root {
+  --bg-deep: #050811;
+  --card-bg: rgba(13, 21, 39, 0.85);
+  --text-main: #FFFFFF;
+  --text-muted: #94A3B8;
+  --border-color: #1a233a;
+  --green-accent: #00ff88;
+  --cyan-accent: #00E5FF;
+  --font-family: 'Cairo', sans-serif;
+}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: var(--font-family);
-        }
+.light {
+  --bg-deep: #F8FAFC;
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --text-main: #111827;
+  --text-muted: #475569;
+  --border-color: #E2E8F0;
+}
 
-        body {
-            background-color: var(--bg-deep);
-            color: var(--text-main);
-            transition: all 0.3s ease;
-            line-height: 1.6;
-        }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-family);
+}
 
-        /* --- Header & Nav --- */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 8%;
-            background: rgba(5, 8, 17, 0.8);
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid var(--border-color);
-        }
+/* --- التنسيقات الخاصة بميزة تتبع التقدم --- */
+.progress-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 0 20px;
+  text-align: center;
+}
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: var(--green-accent);
-        }
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
 
-        nav a {
-            color: var(--text-muted);
-            text-decoration: none;
-            margin: 0 12px;
-            font-weight: 600;
-            transition: 0.3s;
-        }
+.progress-bar-bg {
+  width: 100%;
+  height: 10px;
+  background-color: var(--border-color);
+  border-radius: 10px;
+  overflow: hidden;
+}
 
-        nav a:hover {
-            color: var(--cyan-accent);
-        }
+.progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--cyan-accent), var(--green-accent));
+  transition: width 0.4s ease;
+}
 
-        .controls-btn {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
+.reset-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.85rem;
+  margin-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
 
-        .btn-ui {
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-main);
-            padding: 6px 14px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: 0.3s;
-        }
+.reset-btn:hover {
+  color: #ff4d4d;
+}
 
-        .btn-ui:hover {
-            border-color: var(--green-accent);
-            color: var(--green-accent);
-        }
+.complete-btn {
+  background: transparent;
+  border: 1px solid var(--green-accent);
+  color: var(--green-accent);
+  padding: 6px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+  margin-top: 15px;
+}
 
-        /* --- Hero / Title --- */
-        .hero {
-            text-align: center;
-            padding: 40px 20px 20px;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 10px;
-        }
-
-        /* --- Roadmap Progress Tracker (مثل محمود حسن) --- */
-        .progress-section {
-            max-width: 700px;
-            margin: 20px auto 40px;
-            padding: 0 20px;
-        }
-
-        .progress-header {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-        .progress-bar-bg {
-            width: 100%;
-            height: 8px;
-            background-color: var(--border-color);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .progress-bar-fill {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, var(--cyan-accent), var(--green-accent));
-            transition: width 0.4s ease-in-out;
-        }
-
-        .reset-btn {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            cursor: pointer;
-            margin-top: 8px;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            transition: 0.3s;
-        }
-
-        .reset-btn:hover {
-            color: #ff4d4d;
-        }
-
-        /* --- Roadmap Cards Container --- */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 20px 60px;
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .stage-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 25px;
-            transition: 0.3s ease;
-            position: relative;
-        }
-
-        .stage-card:hover {
-            border-color: var(--green-accent);
-        }
-
-        .stage-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 12px;
-        }
-
-        .stage-badge {
-            background: rgba(0, 229, 255, 0.1);
-            color: var(--cyan-accent);
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            font-weight: 700;
-        }
-
-        .stage-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-        }
-
-        .stage-desc {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-        }
-
-        .topics-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .topic-tag {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-color);
-            color: var(--text-main);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-        }
-
-        /* --- Footer Button (مكتملة) --- */
-        .stage-footer {
-            display: flex;
-            justify-content: flex-end;
-            border-top: 1px solid var(--border-color);
-            padding-top: 15px;
-            margin-top: 10px;
-        }
-
-        .complete-btn {
-            background-color: transparent;
-            border: 1px solid var(--green-accent);
-            color: var(--green-accent);
-            padding: 8px 22px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 700;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .complete-btn:hover {
-            background: rgba(0, 255, 136, 0.1);
-        }
-
-        .complete-btn.completed {
-            background-color: var(--green-accent);
-            color: #050811;
-            box-shadow: 0 0 12px rgba(0, 255, 136, 0.3);
-        }
-    </style>
+.complete-btn.completed {
+  background-color: var(--green-accent);
+  color: var(--bg-deep);
+}
+</style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header>
-        <div class="logo">
-            <i class="fas fa-shield-alt"></i> Rodina Ahmed
-        </div>
-        <nav>
-            <a href="#about">نبذة عني</a>
-            <a href="#roadmap">الـ Roadmap</a>
-            <a href="#pdf">تحميل PDF</a>
-            <a href="#contact">تواصل</a>
-        </nav>
-        <div class="controls-btn">
-            <button class="btn-ui" onclick="toggleTheme()"><i class="fas fa-cog"></i></button>
-            <button class="btn-ui">عربي / EN</button>
-        </div>
-    </header>
-
-    <!-- Main Section -->
-    <section class="hero" id="roadmap">
-        <h1>خارطة طريق SOC Tier 1 🧭</h1>
-    </section>
-
-    <!-- Progress Tracker Section -->
-    <div class="progress-section">
-        <div class="progress-header">
-            <span id="stage-counter">0 / 8 مراحل</span>
-            <span>تقدمك في الـ Roadmap</span>
-        </div>
-        <div class="progress-bar-bg">
-            <div class="progress-bar-fill" id="progress-bar-fill"></div>
-        </div>
-        <button class="reset-btn" onclick="resetProgress()">
-            <i class="fas fa-sync-alt"></i> إعادة تعيين
-        </button>
+  <!-- شريط التقدم وزر إعادة التعيين -->
+  <div class="progress-container">
+    <div class="progress-header">
+      <span id="stage-counter">0 / 8 مراحل</span>
+      <span>تقدمك في الـ Roadmap</span>
     </div>
-
-    <!-- Roadmap Stages -->
-    <div class="container">
-
-        <!-- Stage 0 -->
-        <div class="stage-card" data-stage-id="0">
-            <div class="stage-header">
-                <span class="stage-badge">المرحلة 0</span>
-                <h2 class="stage-title">أساسيات الشبكات</h2>
-            </div>
-            <p class="stage-desc">يجب دراسة أساسيات الشبكات من خلال Network+ أو CCNA (نظري فقط بدون تعمق زائد).</p>
-            <div class="topics-list">
-                <span class="topic-tag">Network+</span>
-                <span class="topic-tag">CCNA</span>
-                <span class="topic-tag">OSI Model</span>
-                <span class="topic-tag">IP Addressing</span>
-                <span class="topic-tag">DNS</span>
-                <span class="topic-tag">DHCP</span>
-            </div>
-            <div class="stage-footer">
-                <button class="complete-btn" onclick="toggleStage(0)">
-                    <i class="fas fa-check"></i> <span class="btn-text">مكتملة</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- Stage 1 -->
-        <div class="stage-card" data-stage-id="1">
-            <div class="stage-header">
-                <span class="stage-badge">المرحلة 1</span>
-                <h2 class="stage-title">أنظمة التشغيل والإدارة</h2>
-            </div>
-            <p class="stage-desc">تعلم التعامل مع أنظمة Windows و Linux من منظور الأمان والإدارة.</p>
-            <div class="topics-list">
-                <span class="topic-tag">Linux Basics</span>
-                <span class="topic-tag">Windows Administration</span>
-                <span class="topic-tag">Active Directory</span>
-                <span class="topic-tag">PowerShell / Bash</span>
-            </div>
-            <div class="stage-footer">
-                <button class="complete-btn" onclick="toggleStage(1)">
-                    <i class="fas fa-check"></i> <span class="btn-text">مكتملة</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- Stage 2 -->
-        <div class="stage-card" data-stage-id="2">
-            <div class="stage-header">
-                <span class="stage-badge">المرحلة 2</span>
-                <h2 class="stage-title">أساسيات الأمن السايبراني</h2>
-            </div>
-            <p class="stage-desc">دراسة المفاهيم الأساسية للتهديدات والثغرات والتشفير (مثل Security+).</p>
-            <div class="topics-list">
-                <span class="topic-tag">CompTIA Security+</span>
-                <span class="topic-tag">CIA Triad</span>
-                <span class="topic-tag">Cryptography</span>
-                <span class="topic-tag">Threats & Vulnerabilities</span>
-            </div>
-            <div class="stage-footer">
-                <button class="complete-btn" onclick="toggleStage(2)">
-                    <i class="fas fa-check"></i> <span class="btn-text">مكتملة</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- باقي المراحل بنفس النظام (يمكنك زيادة أو تعديل المحتوى) -->
-
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progress-bar-fill"></div>
     </div>
+    <button class="reset-btn" onclick="resetProgress()">
+      <i class="fas fa-undo"></i> إعادة تعيين
+    </button>
+  </div>
 
-    <!-- Script JavaScript -->
-    <script>
-        const TOTAL_STAGES = 8; // يمكنك تغيير عدد المراحل هنا
+  <!-- كود JavaScript الخاص بتشغيل الميزة وحفظ البيانات -->
+  <script>
+    const TOTAL_STAGES = 8; // يمكنك تغيير عدد المراحل هنا حسب الحاجة
 
-        document.addEventListener('DOMContentLoaded', () => {
-            updateUI();
-        });
+    document.addEventListener('DOMContentLoaded', () => {
+        updateUI();
+    });
 
-        function toggleStage(stageId) {
-            let completed = JSON.parse(localStorage.getItem('completed_stages')) || [];
-            
-            if (completed.includes(stageId)) {
-                completed = completed.filter(id => id !== stageId);
-            } else {
-                completed.push(stageId);
-            }
-
-            localStorage.setItem('completed_stages', JSON.stringify(completed));
-            updateUI();
+    function toggleStage(stageId) {
+        let completed = JSON.parse(localStorage.getItem('completed_stages')) || [];
+        
+        if (completed.includes(stageId)) {
+            completed = completed.filter(id => id !== stageId);
+        } else {
+            completed.push(stageId);
         }
 
-        function updateUI() {
-            const completed = JSON.parse(localStorage.getItem('completed_stages')) || [];
-            const count = completed.length;
+        localStorage.setItem('completed_stages', JSON.stringify(completed));
+        updateUI();
+    }
 
-            // 1. تحديث العداد والشريط
-            document.getElementById('stage-counter').innerText = `${count} / ${TOTAL_STAGES} مراحل`;
-            const percentage = (count / TOTAL_STAGES) * 100;
-            document.getElementById('progress-bar-fill').style.width = `${percentage}%`;
+    function updateUI() {
+        const completed = JSON.parse(localStorage.getItem('completed_stages')) || [];
+        const count = completed.length;
 
-            // 2. تحديث شكل الأزرة
-            document.querySelectorAll('.stage-card').forEach(card => {
-                const stageId = parseInt(card.getAttribute('data-stage-id'));
-                const btn = card.querySelector('.complete-btn');
-                const textSpan = btn.querySelector('.btn-text');
+        // تحديث العداد والنص
+        const counterElem = document.getElementById('stage-counter');
+        const fillElem = document.getElementById('progress-bar-fill');
+        
+        if (counterElem) counterElem.innerText = `${count} / ${TOTAL_STAGES} مراحل`;
+        if (fillElem) fillElem.style.width = `${(count / TOTAL_STAGES) * 100}%`;
 
+        // تحديث حالة الأزرار في الكروت
+        document.querySelectorAll('.stage-card').forEach(card => {
+            const stageId = parseInt(card.getAttribute('data-stage-id'));
+            const btn = card.querySelector('.complete-btn');
+            
+            if (btn) {
                 if (completed.includes(stageId)) {
                     btn.classList.add('completed');
-                    textSpan.innerText = 'مكتملة';
+                    btn.innerText = '✓ مكتملة';
                 } else {
                     btn.classList.remove('completed');
-                    textSpan.innerText = 'مكتملة';
+                    btn.innerText = 'مكتملة';
                 }
-            });
-        }
-
-        function resetProgress() {
-            if (confirm('هل أنتِ متأكدة من إستعادة ضبط التقدم لجميع المراحل؟')) {
-                localStorage.removeItem('completed_stages');
-                updateUI();
             }
-        }
+        });
+    }
 
-        function toggleTheme() {
-            document.body.classList.toggle('light');
+    function resetProgress() {
+        if (confirm('هل أنتِ متأكدة من إعادة تعيين التقدم؟')) {
+            localStorage.removeItem('completed_stages');
+            updateUI();
         }
-    </script>
+    }
+  </script>
 </body>
 </html>
