@@ -6,8 +6,8 @@
     <title>رودينا أحمد | SOC Tier 1 Roadmap</title>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Fonts (Cairo & Fira Code) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -20,7 +20,7 @@
             --text-main: #f0f6fc;
             --text-muted: #8b949e;
             --border-color: #21262d;
-            --glow-green: rgba(0, 255, 136, 0.15);
+            --glow-green: rgba(0, 255, 136, 0.2);
         }
 
         * {
@@ -34,108 +34,184 @@
         body {
             background-color: var(--bg-dark);
             color: var(--text-main);
-            line-height: 1.6;
             overflow-x: hidden;
+            position: relative;
         }
 
-        /* Navbar */
-        header {
+        /* Canvas Background */
+        #bg-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(10, 14, 23, 0.9);
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 23, 0.85);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-color);
             z-index: 1000;
-            padding: 1rem 5%;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: var(--accent-green);
             display: flex;
             align-items: center;
             gap: 10px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
             text-decoration: none;
         }
 
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 20px;
-        }
-
-        nav a {
-            color: var(--text-main);
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        nav a:hover {
+        .logo span {
             color: var(--accent-green);
         }
 
-        /* Hero */
-        .hero {
-            min-height: 85vh;
+        .nav-links {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-green);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
             align-items: center;
+            justify-content: center;
             text-align: center;
-            padding: 120px 20px 40px;
-            background: radial-gradient(circle at center, rgba(0,255,136,0.05) 0%, transparent 70%);
+            padding: 100px 20px 50px;
+        }
+
+        .hero-content {
+            max-width: 800px;
         }
 
         .avatar-container {
+            position: relative;
             width: 150px;
             height: 150px;
+            margin: 0 auto 20px;
             border-radius: 50%;
-            border: 3px solid var(--accent-green);
+            padding: 5px;
+            background: linear-gradient(45deg, var(--accent-green), var(--accent-blue));
             box-shadow: 0 0 25px var(--glow-green);
-            margin-bottom: 20px;
-            overflow: hidden;
-            background-color: var(--bg-card);
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .avatar-container img {
             width: 100%;
             height: 100%;
+            border-radius: 50%;
             object-fit: cover;
+            background-color: var(--bg-card);
         }
 
-        .hero h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; }
-        .hero h2 { font-size: 1.2rem; color: var(--accent-green); margin-bottom: 15px; }
-        .hero p { max-width: 600px; color: var(--text-muted); margin-bottom: 25px; }
+        .avatar-placeholder {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: var(--bg-card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent-green);
+        }
 
-        .cta-btns { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            color: var(--accent-green);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .hero .tags {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
         .btn {
-            padding: 10px 24px;
+            padding: 12px 28px;
             border-radius: 8px;
             text-decoration: none;
             font-weight: 700;
             transition: 0.3s;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 8px;
         }
 
-        .btn-primary { background: var(--accent-green); color: var(--bg-dark); }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 15px var(--glow-green); }
-        .btn-secondary { border: 1px solid var(--border-color); color: var(--text-main); background: var(--bg-card); }
-        .btn-secondary:hover { border-color: var(--accent-green); color: var(--accent-green); }
+        .btn-primary {
+            background: var(--accent-green);
+            color: #000;
+            box-shadow: 0 0 15px var(--glow-green);
+        }
 
-        /* Sections General */
-        section { padding: 60px 5%; max-width: 1200px; margin: 0 auto; }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px var(--glow-green);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
         .section-title {
             text-align: center;
             font-size: 2rem;
@@ -146,225 +222,430 @@
         .section-title::after {
             content: '';
             display: block;
-            width: 50px;
-            height: 4px;
+            width: 60px;
+            height: 3px;
             background: var(--accent-green);
             margin: 10px auto 0;
             border-radius: 2px;
         }
 
-        /* Roadmap Grid */
-        .roadmap-grid {
+        /* About Section */
+        .about-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
         }
 
-        .roadmap-card {
+        .card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
+            padding: 30px;
             border-radius: 12px;
-            padding: 25px;
             transition: 0.3s;
-            position: relative;
         }
 
-        .roadmap-card:hover {
+        .card:hover {
             border-color: var(--accent-green);
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px var(--glow-green);
         }
 
-        .card-icon {
-            font-size: 2rem;
+        .card h3 {
             color: var(--accent-green);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .skills-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .pill {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--accent-green);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+        }
+
+        /* Roadmap Progress */
+        .progress-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .progress-bar-bg {
+            background: rgba(255, 255, 255, 0.1);
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+
+        /* Roadmap List */
+        .roadmap-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .roadmap-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .roadmap-item:hover {
+            background: var(--bg-card-hover);
+        }
+
+        .roadmap-item.completed {
+            border-color: var(--accent-green);
+            background: rgba(0, 255, 136, 0.03);
+        }
+
+        .checkbox-custom {
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--text-muted);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+            flex-shrink: 0;
+        }
+
+        .roadmap-item.completed .checkbox-custom {
+            background: var(--accent-green);
+            border-color: var(--accent-green);
+            color: #000;
+        }
+
+        .roadmap-text h4 {
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .roadmap-text p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Download Section */
+        .download-card {
+            text-align: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            border-radius: 12px;
+        }
+
+        .pdf-icon {
+            font-size: 3.5rem;
+            color: #ff4757;
             margin-bottom: 15px;
         }
 
-        .roadmap-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 12px;
-            color: var(--text-main);
-        }
-
-        .roadmap-card ul {
-            list-style: none;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        .roadmap-card ul li {
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .roadmap-card ul li::before {
-            content: '▹';
-            color: var(--accent-green);
-        }
-
-        /* Contact */
-        .contact-cards { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
-        .contact-card {
+        /* Contact Section */
+        .contact-box {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            padding: 20px 30px;
+            padding: 30px;
             border-radius: 12px;
-            text-decoration: none;
-            color: var(--text-main);
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+            text-align: right;
+        }
+
+        .contact-item {
             display: flex;
             align-items: center;
             gap: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            text-decoration: none;
             transition: 0.3s;
         }
 
-        .contact-card:hover { border-color: var(--accent-green); transform: translateY(-3px); }
-        .contact-card i { font-size: 1.5rem; color: var(--accent-green); }
+        .contact-item:hover {
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
 
-        footer { text-align: center; padding: 30px; border-top: 1px solid var(--border-color); color: var(--text-muted); }
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 30px 20px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 50px;
+        }
+
+        footer strong {
+            color: var(--text-main);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header>
-        <a href="#" class="logo">
-            <i class="fa-solid fa-user-shield"></i>
-            رودينا أحمد
-        </a>
-        <nav>
-            <ul>
-                <li><a href="#about">نبذة عني</a></li>
-                <li><a href="#roadmap">الـ Roadmap</a></li>
-                <li><a href="#contact">تواصل معي</a></li>
-            </ul>
-        </nav>
-    </header>
+    <!-- Canvas Background Matrix Animation -->
+    <canvas id="bg-canvas"></canvas>
 
-    <!-- Hero -->
-    <section class="hero" id="about">
-        <div class="avatar-container">
-            <img src="Photo.jpeg" id="profileImg" alt="رودينا أحمد" onerror="handleImageError(this)">
+    <!-- Navbar -->
+    <nav>
+        <div class="nav-container">
+            <a href="#hero" class="logo">
+                <span>🛡</span> <span>رودينا أحمد</span>
+            </a>
+            <div class="nav-links">
+                <a href="#about">نبذة عني</a>
+                <a href="#roadmap">الـ Roadmap</a>
+                <a href="#download">تحميل PDF</a>
+                <a href="#contact">تواصل</a>
+            </div>
         </div>
-        <h1>رودينا أحمد</h1>
-        <h2>محللة أمن سيبراني | SOC Tier 1 | طالبة أمن سيبراني</h2>
-        <p>Cyber Security | Blue Team | SOC Tier 1 | Incident Response | SIEM & Threat Hunting</p>
-        
-        <div class="cta-btns">
-            <a href="#roadmap" class="btn btn-primary"><i class="fa-solid fa-compass"></i> استكشف الـ Roadmap</a>
-            <a href="https://www.linkedin.com/in/rodina-ahmed-4049a6375" target="_blank" class="btn btn-secondary"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <div class="avatar-container">
+                <!-- ضعي صورتك هنا بشرط تسميتها Photo.jpeg أو سيتم عرض الأحرف الأولى RA تلقائياً -->
+                <div class="avatar-placeholder">RA</div>
+            </div>
+            <h1>رودينا أحمد</h1>
+            <p class="subtitle">محللة أمن سيبراني | SOC Tier 1 | طالبة أمن سيبراني</p>
+            <p class="tags">Cyber Security | Blue Team | SOC Tier 1 | Incident Response | SIEM | Threat Hunting</p>
+            <div class="hero-btns">
+                <a href="#roadmap" class="btn btn-primary">🚀 ابدأ الرحلة</a>
+                <a href="#contact" class="btn btn-secondary">📧 تواصل معي</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">نبذة عني</h2>
+        <div class="about-grid">
+            <div class="card">
+                <h3>من أنا؟</h3>
+                <p>أنا رودينا أحمد، طالبة ومهتمة بمجال الأمن السيبراني، خصوصاً الـ SOC Tier 1 و Incident Response و Blue Teaming. قمت بإنشاء هذا الـ Roadmap لمساعدة المبتدئين في دخول المجال بطريقة منظمة وعملية.</p>
+            </div>
+            <div class="card">
+                <h3>أهدافي في SOC</h3>
+                <p>بناء مسار واضح للمبتدئين، وتطوير مهارات التحليل الأمني، والمساهمة في المجتمع التقني العربي. أسعى للتخصص في Threat Detection و SIEM Engineering.</p>
+                <div class="skills-pills">
+                    <span class="pill">SOC Tier 1</span>
+                    <span class="pill">Networking</span>
+                    <span class="pill">Security+</span>
+                    <span class="pill">Linux</span>
+                    <span class="pill">Python</span>
+                    <span class="pill">Blue Team</span>
+                    <span class="pill">Incident Response</span>
+                    <span class="pill">SIEM</span>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Roadmap Section -->
     <section id="roadmap">
-        <h2 class="section-title">SOC Tier 1 Roadmap</h2>
-        <div class="roadmap-grid">
-            
-            <div class="roadmap-card">
-                <div class="card-icon"><i class="fa-solid fa-network-wired"></i></div>
-                <h3>1. الأساسيات Networking & OS</h3>
-                <ul>
-                    <li>TCP/IP & OSI Model</li>
-                    <li>DNS, DHCP, HTTP/HTTPS</li>
-                    <li>Windows & Linux Fundamentals</li>
-                    <li>Command Line & PowerShell</li>
-                </ul>
+        <h2 class="section-title">🧭 خارطة طريق SOC Tier 1</h2>
+        
+        <div class="progress-box">
+            <div class="progress-info">
+                <span>تقدمك في الـ Roadmap</span>
+                <span id="progress-text">0 / 8</span>
             </div>
-
-            <div class="roadmap-card">
-                <div class="card-icon"><i class="fa-solid fa-shield-cat"></i></div>
-                <h3>2. مفاهيم الأمن السيبراني</h3>
-                <ul>
-                    <li>CIA Triad & Defense in Depth</li>
-                    <li>Cyber Kill Chain Model</li>
-                    <li>MITRE ATT&CK Framework</li>
-                    <li>Common Threats & Vulnerabilities</li>
-                </ul>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progress-bar"></div>
             </div>
+        </div>
 
-            <div class="roadmap-card">
-                <div class="card-icon"><i class="fa-solid fa-desktop"></i></div>
-                <h3>3. أدوات التحليل وتحليل الحزم</h3>
-                <ul>
-                    <li>Wireshark & Packet Analysis</li>
-                    <li>Nmap Network Scanning</li>
-                    <li>Sysinternals Suite</li>
-                    <li>Log Analysis Basics</li>
-                </ul>
-            </div>
+        <div class="roadmap-list" id="roadmap-container">
+            <!-- سيتم توليد الخطوات بواسطة JavaScript -->
+        </div>
+    </section>
 
-            <div class="roadmap-card">
-                <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
-                <h3>4. أنظمة الـ SIEM</h3>
-                <ul>
-                    <li>Splunk Basics & KQL</li>
-                    <li>Log Sources & Ingestion</li>
-                    <li>Creating Dashboards & Alerts</li>
-                    <li>Event Correlation</li>
-                </ul>
-            </div>
-
-            <div class="roadmap-card">
-                <div class="card-icon"><i class="fa-solid fa-bug"></i></div>
-                <h3>5. الاستجابة للحوادث Incident Response</h3>
-                <ul>
-                    <li>Alert Triage & Investigation</li>
-                    <li>Phishing Email Analysis</li>
-                    <li>Malware Analysis Basics</li>
-                    <li>Writing Incident Reports</li>
-                </ul>
-            </div>
-
-            <div class="roadmap-card">
-                <div class="card-icon"><i class="fa-solid fa-vial-circle-check"></i></div>
-                <h3>6. التطبيق العملي والمنصات</h3>
-                <ul>
-                    <li>TryHackMe (SOC Level 1 Path)</li>
-                    <li>LetsDefend (SOC Analyst Path)</li>
-                    <li>Blue Team Labs Online (BTLO)</li>
-                    <li>CyberDefenders Challenges</li>
-                </ul>
-            </div>
-
+    <!-- Download Section -->
+    <section id="download">
+        <h2 class="section-title">📥 تحميل PDF</h2>
+        <div class="download-card">
+            <div class="pdf-icon"><i class="fa-solid fa-file-pdf"></i></div>
+            <p>اضغط لفتح أو تحميل نسخة كاملة وقابلة للطباعة من الـ Roadmap.</p>
+            <br>
+            <a href="#" class="btn btn-primary" onclick="alert('قم بإضافة رابط ملف الـ PDF الخاص بك هنا')">تحميل الـ Roadmap (PDF)</a>
         </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact">
-        <h2 class="section-title">تواصل معي</h2>
-        <div class="contact-cards">
-            <a href="https://www.linkedin.com/in/rodina-ahmed-4049a6375" target="_blank" class="contact-card">
-                <i class="fa-brands fa-linkedin"></i>
-                <span>حساب LinkedIn</span>
-            </a>
-            <a href="mailto:rodinaahmed123az@gmail.com" class="contact-card">
-                <i class="fa-solid fa-envelope"></i>
-                <span>rodinaahmed123az@gmail.com</span>
-            </a>
+        <h2 class="section-title">📧 تواصل معي</h2>
+        <div class="contact-box">
+            <p>يمكنك التواصل معي عبر أي من الوسائل التالية:</p>
+            <div class="contact-links">
+                <a href="mailto:rodina@example.com" class="contact-item">
+                    <i class="fa-solid fa-envelope" style="color: #00ff88;"></i>
+                    <span>Email: rodina@example.com</span>
+                </a>
+                <!-- استبدلي الرابط التالي برابط حسابك على LinkedIn -->
+                <a href="YOUR_LINKEDIN_URL_HERE" target="_blank" class="contact-item">
+                    <i class="fa-brands fa-linkedin" style="color: #00b8ff;"></i>
+                    <span>LinkedIn: Rodina Ahmed</span>
+                </a>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>جميع الحقوق محفوظة © 2026 - رودينا أحمد</p>
+        <p>تم الإنشاء بواسطة <strong>رودينا أحمد | Rodina Ahmed</strong></p>
+        <p>SOC Tier 1 Roadmap Project</p>
+        <p>© 2026 All Rights Reserved</p>
     </footer>
 
-    <!-- Script للتعامل مع امتدادات الصور -->
+    <!-- JavaScript code -->
     <script>
-        const extensions = ['Photo.jpg', 'Photo.png', 'Photo.JPG', 'Photo.JPEG', 'photo.jpeg', 'photo.jpg'];
-        let extIndex = 0;
+        // Matrix / Digital Background Animation
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
 
-        function handleImageError(img) {
-            if (extIndex < extensions.length) {
-                img.src = extensions[extIndex];
-                extIndex++;
-            } else {
-                img.parentElement.innerHTML = '<div style="width:100%;height:100%;border-radius:50%;background:#121826;display:flex;align-items:center;justify-content:center;font-size:3rem;font-weight:800;color:#00ff88;">RA</div>';
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const chars = '0110010101010101010101';
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function drawCanvas() {
+            ctx.fillStyle = 'rgba(10, 14, 23, 0.08)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#00ff88';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars.charAt(Math.floor(Math.random() * chars.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
             }
         }
+        setInterval(drawCanvas, 33);
+
+        // Interactive Roadmap Data
+        const roadmapSteps = [
+            { title: "1. أساسيات الشبكات (Networking Fundamentals)", desc: "فهم OSI Model, TCP/IP, Ports, Protocols, DNS, HTTP/HTTPS." },
+            { title: "2. أساسيات أنظمة التشغيل (Linux & Windows)", desc: "تعلم الأوامر الأساسية وإدارة المستخدمين والسجلات (Logs) في النظامين." },
+            { title: "3. مفاهيم الأمن السيبراني الأساسية", desc: "دراسة CIA Triad, Threat vs Vulnerability vs Risk, Security+ Concepts." },
+            { title: "4. تحليلات الشبكة والحزم (Packet Analysis)", desc: "احتراف أداة Wireshark وتتبع الـ Packets واكتشاف الممارسات المشبوهة." },
+            { title: "5. إدارة الأنظمة وأنظمة الـ SIEM", desc: "التعامل مع أدوات مثل Splunk أو ELK Stack لمراقبة وحشد السجلات وتحليلها." },
+            { title: "6. الاستجابة للحوادث (Incident Response)", desc: "فهم مراحل الاستجابة للمخاطر وتتبع الهجمات ودراسة Cyber Kill Chain." },
+            { title: "7. هندسة التهديدات والـ Threat Intelligence", desc: "التعامل مع منصات مثل VirusTotal و AbuseIPDB والتعرف على مؤشرات الاختراق (IOCs)." },
+            { title: "8. التطبيق العملي والمشاريع (Hands-on Labs)", desc: "حل تحديات على منصات مثل TryHackMe, HTB, Blueteamlabs." }
+        ];
+
+        const container = document.getElementById('roadmap-container');
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+
+        let completedState = JSON.parse(localStorage.getItem('rodina_roadmap_progress')) || Array(roadmapSteps.length).fill(false);
+
+        function updateProgress() {
+            const completedCount = completedState.filter(Boolean).length;
+            const percentage = (completedCount / roadmapSteps.length) * 100;
+            progressBar.style.width = percentage + '%';
+            progressText.innerText = `${completedCount} / ${roadmapSteps.length}`;
+            localStorage.setItem('rodina_roadmap_progress', JSON.stringify(completedState));
+        }
+
+        function renderRoadmap() {
+            container.innerHTML = '';
+            roadmapSteps.forEach((step, index) => {
+                const item = document.createElement('div');
+                item.className = `roadmap-item ${completedState[index] ? 'completed' : ''}`;
+                item.onclick = () => toggleStep(index);
+
+                item.innerHTML = `
+                    <div class="checkbox-custom">
+                        ${completedState[index] ? '<i class="fa-solid fa-check"></i>' : ''}
+                    </div>
+                    <div class="roadmap-text">
+                        <h4>${step.title}</h4>
+                        <p>${step.desc}</p>
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+            updateProgress();
+        }
+
+        function toggleStep(index) {
+            completedState[index] = !completedState[index];
+            renderRoadmap();
+        }
+
+        renderRoadmap();
     </script>
 </body>
 </html>
