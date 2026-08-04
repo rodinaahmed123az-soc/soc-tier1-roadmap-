@@ -159,6 +159,7 @@ nav {
   gap: 15px;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 .btn-primary {
@@ -197,6 +198,35 @@ nav {
 .btn-outline:hover {
   background: rgba(0, 255, 136, 0.1);
   transform: translateY(-2px);
+}
+
+/* Social Icons */
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.social-btn:hover {
+  color: var(--green-accent);
+  border-color: var(--green-accent);
+  transform: translateY(-3px);
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
 }
 
 /* About Section */
@@ -426,9 +456,9 @@ nav {
 
 <!-- Hero Section -->
 <div class="hero-section">
-  <!-- الصورة الشخصية -->
+  <!-- الصورة الشخصية المربوطة بـ profile.jpeg -->
   <div class="profile-avatar-container">
-    <img src="profile.jpg" alt="Rodina Ahmed" class="profile-avatar">
+    <img src="profile.jpeg" alt="Rodina Ahmed" class="profile-avatar">
   </div>
 
   <div class="hero-subtitle-tags">
@@ -438,6 +468,16 @@ nav {
   <div class="hero-buttons">
     <a href="#roadmap" class="btn-primary">ابدأ الرحلة 🚀</a>
     <a href="mailto:rodinaahmed123az@gmail.com" class="btn-outline">تواصل معي 📧</a>
+  </div>
+
+  <!-- روابط وسائل التواصل الاجتماعي -->
+  <div class="social-links">
+    <a href="https://www.linkedin.com/in/rodina-ahmed-4049a6375" target="_blank" class="social-btn" title="LinkedIn">
+      <i class="fab fa-linkedin-in"></i>
+    </a>
+    <a href="https://github.com/rodinaahmed123az-soc" target="_blank" class="social-btn" title="GitHub">
+      <i class="fab fa-github"></i>
+    </a>
   </div>
 </div>
 
