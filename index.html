@@ -642,7 +642,7 @@ html[dir="ltr"] .complete-action { justify-content: flex-start; }
 
 <a href="#" class="logo">
   <i class="fas fa-shield-alt"></i>
-  <span>رودبنا احمد</span>
+  <span id="navLogoName">رودينا احمد</span>
 </a>
 
 <div class="nav-links">
@@ -666,10 +666,10 @@ html[dir="ltr"] .complete-action { justify-content: flex-start; }
 <!-- Hero Section -->
 <div class="hero-section">
   <div class="profile-avatar-container">
-    <img src="profile.jpeg" alt="رودبنا احمد" class="profile-avatar">
+    <img src="profile.jpeg" alt="Rodina Ahmed" class="profile-avatar">
   </div>
 
-  <h1 class="hero-name" id="heroName">رودبنا احمد</h1>
+  <h1 class="hero-name" id="heroName">رودينا احمد</h1>
   
   <div class="hero-title-sub" id="heroTitleSub">
     محلل أمن سيبراني | SOC Tier 1 | طالب أمن سيبراني
@@ -733,7 +733,7 @@ html[dir="ltr"] .complete-action { justify-content: flex-start; }
     <div class="about-card">
       <h3 class="card-title" id="aboutMeTitle">من أنا؟</h3>
       <p class="card-desc" id="aboutMeDesc">
-        أنا رودبنا احمد، مهتمة ومتخصصة في مجال الأمن السيبراني وتحديداً الـ SOC Tier 1 و Blue Teaming. قمت بإنشاء خارطة الطريق هذه لمساعدة الراغبين في دخول المجال بطريقة منظمة وعملية.
+        أنا رودينا احمد، مهتمة ومتخصصة في مجال الأمن السيبراني وتحديداً الـ SOC Tier 1 و Blue Teaming. قمت بإنشاء خارطة الطريق هذه لمساعدة الراغبين في دخول المجال بطريقة منظمة وعملية.
       </p>
     </div>
   </div>
@@ -829,11 +829,12 @@ let currentLang = "ar";
 
 const dictionary = {
   ar: {
+    navLogoName: "رودينا احمد",
     navContact: "تواصل",
     navPdf: "تحميل PDF",
     navRoadmap: "الـ Roadmap",
     navAbout: "نبذة عني",
-    heroName: "رودبنا احمد",
+    heroName: "رودينا احمد",
     heroTitleSub: "محلل أمن سيبراني | SOC Tier 1 | طالب أمن سيبراني",
     startBtn: "ابدأ الرحلة 🚀",
     contactBtn: "تواصل معي ✉️",
@@ -844,7 +845,7 @@ const dictionary = {
     skillsTitle: "أهدافي والمهارات",
     skillsDesc: "بناء مسار تعليمي واضح، وتطوير مهارات التحليل الأمني والاستجابة للحوادث، والمساهمة في المجتمع التقني.",
     aboutMeTitle: "من أنا؟",
-    aboutMeDesc: "أنا رودبنا احمد، مهتمة ومتخصصة في مجال الأمن السيبراني وتحديداً الـ SOC Tier 1 و Blue Teaming. قمت بإنشاء خارطة الطريق هذه لمساعدة الراغبين في دخول المجال بطريقة منظمة وعملية.",
+    aboutMeDesc: "أنا رودينا احمد، مهتمة ومتخصصة في مجال الأمن السيبراني وتحديداً الـ SOC Tier 1 و Blue Teaming. قمت بإنشاء خارطة الطريق هذه لمساعدة الراغبين في دخول المجال بطريقة منظمة وعملية.",
     pdfHeader: 'تحميل PDF<div class="title-line"></div>',
     pdfText: "اضغط لفتح نسخة قابلة للطباعة من الـ Roadmap.",
     pdfBtn: "🖨️ طباعة / حفظ PDF",
@@ -857,6 +858,7 @@ const dictionary = {
     noResults: "لا توجد نتائج تطابق بحثك."
   },
   en: {
+    navLogoName: "Rodina Ahmed",
     navContact: "Contact",
     navPdf: "Download PDF",
     navRoadmap: "Roadmap",
@@ -977,6 +979,7 @@ function toggleLang() {
   document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
 
   const t = dictionary[currentLang];
+  document.getElementById("navLogoName").innerText = t.navLogoName;
   document.getElementById("navContact").innerText = t.navContact;
   document.getElementById("navPdf").innerText = t.navPdf;
   document.getElementById("navRoadmap").innerText = t.navRoadmap;
